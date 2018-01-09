@@ -1,0 +1,11 @@
+export { authController } from './auth.controller';
+export { beltController } from './belts.controller';
+export { capabilityController } from './capabilities.controller';
+export { examController } from './exams.controller';
+export { fileController } from './files.controller';
+export { locationController } from './locations.controller';
+export { roleController } from './roles.controller';
+export { stackController } from './stacks.controller';
+export { studentController } from './students.controller';
+export { submissionController } from './submissions.controller';
+export { userController } from './users.controller';

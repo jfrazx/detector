@@ -1,0 +1,10 @@
+export { BeltService } from './belt.service';
+export { CapabilityService } from './capability.service';
+export { ExamService } from './exam.service';
+export { FileService } from './file.service';
+export { LocationService } from './location.service';
+export { RoleService } from './role.service';
+export { StackService } from './stack.service';
+export { StudentService } from './student.service';
+export { SubmissionService } from './submission.service';
+export { UserService } from './user.service';
