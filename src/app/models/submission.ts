@@ -1,11 +1,11 @@
 import { Exam } from './exam';
-import { File } from './file';
 import { Student } from './student';
+import { SubmissionFile } from './submission-file';
 import { User } from './user';
 
 export class Submission {
   exam: Exam;
-  files: Array<File>;
+  files: Array<SubmissionFile>;
   student: Student;
   instructor: User;
   source: {

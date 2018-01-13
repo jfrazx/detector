@@ -4,18 +4,18 @@ import * as mongoose from 'mongoose';
 import * as models from '../models';
 import * as uniqueValidator from 'mongoose-unique-validator';
 import { join, resolve } from 'path';
-import { production } from './production';
+import { PRODUCTION } from './production';
 import { inspect } from 'util';
 
 const debug = debuggable('dojo-detector');
-const database = `dojo-detector_${ databaseEntity() }`;
+export const database = `dojo-detector_${ databaseEntity() }`;
 
 mongoose.connect(`mongodb://localhost/${ database }`);
 (mongoose as any).Promise = Promise;
 
 mongoose.plugin(uniqueValidator,  { message: '{PATH} must be unique' });
 
-if (!production) {
+if (!PRODUCTION) {
 
   /*
   *  CONNECTION EVENTS
@@ -61,15 +61,6 @@ if (!production) {
   });
 
 }
-
-// readdirSync(modelsPath)
-//   .filter((file) => /^index/.test(file))
-//   .forEach((file) => {
-//     if (regex.test(file)) {
-//       require(join(modelsPath, file));
-//     }
-//   }
-// );
 
 function databaseEntity(): string {
   return process.env.NODE_ENV || 'development';

@@ -1,4 +1,4 @@
-import { wrapper } from './concerns/async-wrapper';
+import { wrapper } from './middleware';
 import { beltController } from '../controllers';
 import { Router } from 'express';
 

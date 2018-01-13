@@ -35,8 +35,6 @@ import { SharedModule } from '../shared';
   providers: [
     AuthService,
   ],
-  exports: [
-    AuthService,
-  ],
+  exports: [],
 })
 export class AuthModule {}

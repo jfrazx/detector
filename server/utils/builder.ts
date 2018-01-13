@@ -1,14 +1,16 @@
 import { extname, relative, join, basename } from 'path';
-import { clone } from './';
+import { readFile } from 'fs';
+import { STORAGE } from '../config';
+import { clone, FileData } from './';
 import {
-  File,
-  IFile,
-  FileModel,
+  ISubmissionFile,
   StackModel,
+  SubmissionFile,
+  SubmissionFileModel,
   SubmissionModel,
 } from '../models';
 
-export async function build(submission: SubmissionModel, stack: StackModel): Promise<FileModel[]> {
+export async function build(submission: SubmissionModel, stack: StackModel): Promise<SubmissionFileModel[]> {
   return await FileBuilder.for(submission, stack).build();
 }
 
@@ -20,7 +22,7 @@ export abstract class FileBuilder {
     protected submission: SubmissionModel,
     protected stack: StackModel,
   ) {
-    this.source = join('/tmp', `${ this.submission._id }`);
+    this.source = join(STORAGE, this.submission._id);
     this.path = join(this.source, this.submission.source.path || '');
   }
 
@@ -28,46 +30,57 @@ export abstract class FileBuilder {
     const { link } = submission.source;
 
     try {
-      return new TYPES[extname(link)](submission, stack);
+      return new TYPES[extname(link).toLowerCase()](submission, stack) as T;
     } catch (e) {
       return new FileBuilderGit(submission, stack) as T;
     }
   }
 
-  async build(): Promise<FileModel[]> {
+  async build(): Promise<SubmissionFileModel[]> {
     return await this.insert(
-        this.builder(
+        await this.builder(
           await this.prepare()
         )
       );
   }
 
-  abstract async prepare(): Promise<string[]>;
+  abstract async prepare(): Promise<FileData[]>;
 
-  protected filename(name: string): string {
-    const base = basename(name);
-    return base.slice(0, base.length - extname(base).length);
+  protected async builder(files: FileData[]): Promise<ISubmissionFile[]> {
+    const results: Array<ISubmissionFile> = [];
+
+    for (const { path: file, size } of files) {
+      results.push(
+        {
+          submission: this.submission,
+          contents: await this.readContents(file),
+          filename: basename(file),
+          extension: extname(file),
+          path: relative(this.path, file),
+          size,
+        }
+      );
+    }
+    return results;
   }
 
-  protected builder(files: string[]): IFile[] {
-    return files.map<IFile>(file => {
-      return {
-        submission: this.submission,
-        file: basename(file),
-        name: this.filename(file),
-        extension: extname(file),
-        path: relative(this.path, file),
-      };
+  protected async insert(files: ISubmissionFile[]): Promise<SubmissionFileModel[]> {
+    return await SubmissionFile.insertMany(files);
+  }
+
+  protected readContents(file: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      readFile(file, 'utf-8', (error, contents) => {
+        if (error) { return reject(error); }
+
+        resolve(contents);
+      });
     });
-  }
-
-  protected async insert(files: IFile[]): Promise<FileModel[]> {
-    return await File.insertMany(files);
   }
 }
 
 class FileBuilderGit extends FileBuilder {
-  async prepare(): Promise<string[]> {
+  async prepare(): Promise<FileData[]> {
     return await clone(
             this.submission.source.link,
             this.source,
@@ -77,17 +90,28 @@ class FileBuilderGit extends FileBuilder {
   }
 }
 
+/**
+ * @todo
+ *
+ * @class FileBuilderZip
+ * @extends {FileBuilder}
+ */
 class FileBuilderZip extends FileBuilder {
-  async prepare(): Promise<string[]> {
-    return new Promise<string[]>(async (resolve, reject) => {
+  async prepare(): Promise<FileData[]> {
+    return new Promise<FileData[]>(async (resolve, reject) => {
 
     });
   }
 }
-
+/**
+ * @todo
+ *
+ * @class FileBuilderRar
+ * @extends {FileBuilder}
+ */
 class FileBuilderRar extends FileBuilder {
-  async prepare(): Promise<string[]> {
-    return new Promise<string[]>(async (resolve, reject) => {
+  async prepare(): Promise<FileData[]> {
+    return new Promise<FileData[]>(async (resolve, reject) => {
 
     });
   }

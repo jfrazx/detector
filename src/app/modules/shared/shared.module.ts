@@ -14,5 +14,9 @@ import {
   ],
   imports: [],
   providers: [],
+  exports: [
+    FooterComponent,
+    HeaderComponent,
+  ]
 })
 export class SharedModule {}

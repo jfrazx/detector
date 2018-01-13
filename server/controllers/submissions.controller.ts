@@ -1,11 +1,11 @@
-import { CRUD } from '../interfaces/crud';
-import { File, Submission, Stack } from '../models';
-import { Request, Response, Next } from 'express';
+import { CRUD } from '../interfaces';
+import { SubmissionFile, Submission, Stack } from '../models';
+import { Request, Response, NextFunction } from 'express';
 import { build } from '../utils';
 
 
 class SubmissionController implements CRUD {
-  async index(request: Request, response: Response, next: Next): Promise<void> {
+  async index(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
       await Submission.find({})
         .lean()
@@ -15,14 +15,14 @@ class SubmissionController implements CRUD {
     );
   }
 
-  async show(request: Request, response: Response, next: Next): Promise<void> {
+  async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
       await Submission.findById(request.params.id)
-        .lean()
         .populate('exam')
         .populate('instructor')
         .populate('student')
         .populate('files')
+        .lean()
         .exec()
     );
   }
@@ -42,13 +42,13 @@ class SubmissionController implements CRUD {
     response.json(submission);
   }
 
-  async create(request: Request, response: Response, next: Next): Promise<void> {
+  async create(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
       await Submission.create(request.body)
     );
   }
 
-  async update(request: Request, response: Response, next: Next): Promise<void> {
+  async update(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
       await Submission
               .findByIdAndUpdate(request.params.id, { $set: request.body })
@@ -57,9 +57,9 @@ class SubmissionController implements CRUD {
     );
   }
 
-  async destroy(request: Request, response: Response, next: Next): Promise<void> {
+  async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
     const submission = await Submission.findByIdAndRemove(request.params.id);
-    const files = await File.remove({ submission: submission._id });
+    const files = await SubmissionFile.remove({ submission: submission._id });
 
     response.json(submission);
   }

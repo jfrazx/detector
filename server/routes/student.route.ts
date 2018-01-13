@@ -1,5 +1,5 @@
-import { wrapper } from './concerns/async-wrapper';
 import { studentController } from '../controllers';
+import { wrapper } from './middleware';
 import { Router } from 'express';
 
 export const router = Router();

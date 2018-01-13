@@ -1,4 +1,5 @@
 import { read } from './files-reader';
+import { FileData } from './files-reader';
 import * as cloner from 'git-clone';
 
 /**
@@ -16,7 +17,7 @@ export async function clone(
   source: string,
   directory: string,
   { ignore_directories, ignore_files }: Ignore
-): Promise<string[]> {
+): Promise<FileData[]> {
     const repo = await cloner(link, source);
 
     return await read(

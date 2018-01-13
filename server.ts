@@ -1,10 +1,10 @@
-import { production } from './server/config/production';
+import { PRODUCTION } from './server/config';
 import { normalizePort } from './server/utils';
 import { json, urlencoded } from 'body-parser';
 import { join } from 'path';
 
-import * as __ from './server/config/database';
-import { routes } from './server/routes';
+// import * as __ from './server/config/database';
+import { routes, catchAll } from './server/routes';
 
 import * as express from 'express';
 import * as https from 'https';
@@ -24,7 +24,8 @@ app.use(helmet())
   .use(json())
   .use(urlencoded({ extended: true }))
   .use(express.static(join(root, 'public')))
-  .use(routes);
+  .use('/api/v1', routes)
+  .use(catchAll);
 
 
 app.listen(port, () => console.log(`Express server listening on port ${ port }`));

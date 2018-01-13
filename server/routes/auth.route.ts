@@ -1,5 +1,5 @@
 import { authController } from '../controllers';
-import { wrapper } from './concerns/async-wrapper';
+import { wrapper } from './middleware';
 import { Router } from 'express';
 
 export const router = Router();

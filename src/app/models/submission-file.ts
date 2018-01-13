@@ -1,10 +1,12 @@
 import { Submission } from './submission';
 
-export class File {
+export class SubmissionFile {
   extension: string;
-  name: string;
+  contents: string;
+  filename: string;
   path: string;
   submission: Submission;
+  size: number;
   createdAt: Date;
   updatedAt: Date;
 }

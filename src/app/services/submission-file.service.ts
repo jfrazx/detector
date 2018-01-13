@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { SubmissionFile } from '../models';
 
 @Injectable()
-export class FileService {
+export class SubmissionFileService {
 
   constructor() { }
 

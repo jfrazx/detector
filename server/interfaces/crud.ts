@@ -1,11 +1,11 @@
-import { Request, Response, Next, RouteHandler } from 'express';
+import { Request, Response, NextFunction, RequestHandler } from 'express';
 
 export interface CRUD {
-  index: RouteHandler;
-  show: RouteHandler;
-  create: RouteHandler;
-  destroy: RouteHandler;
-  update: RouteHandler;
+  index: RequestHandler;
+  show: RequestHandler;
+  create: RequestHandler;
+  destroy: RequestHandler;
+  update: RequestHandler;
 }
 
-export type Asyncable<T> = (request: Request, response: Response, next: Next) => Promise<T | T[]>;
+export type Asyncable<T> = (request: Request, response: Response, next: NextFunction) => Promise<T | T[]>;

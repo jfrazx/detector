@@ -1,5 +1,6 @@
 import { model, Schema, Document, Model } from 'mongoose';
 import { LocationModel, RoleModel } from './';
+import { isEmail } from 'validator';
 import * as bcrypt from 'bcrypt';
 
 const options: any = {
@@ -32,6 +33,19 @@ const userSchema = new Schema({
     required: true,
     trim: true,
     type: String,
+  },
+  email: {
+    required: true,
+    match: /^[A-Za-z0-9]+@codingdojo\.com$/,
+    trim: true,
+    type: String,
+    validate: [
+      {
+        validator(value: string): boolean {
+          return isEmail(value);
+        },
+      },
+    ],
   },
 },
 options);

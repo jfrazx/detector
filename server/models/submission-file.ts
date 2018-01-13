@@ -1,19 +1,19 @@
 import { model, Schema, Document } from 'mongoose';
 import { SubmissionModel } from './submission';
 
-const fileSchema = new Schema({
+const submissionFileSchema = new Schema({
   extension: {
     trim: true,
     type: String,
   },
-  file: {
+  filename: {
     required: true,
     trim: true,
     type: String,
   },
-  name: {
+  contents: {
+    default: '',
     required: true,
-    trim: true,
     type: String,
   },
   path: {
@@ -26,22 +26,27 @@ const fileSchema = new Schema({
     required: true,
     type: Schema.Types.ObjectId,
   },
+  size: {
+    required: true,
+    type: Number
+  },
 },
 {
   timestamps: true,
 });
 
-export interface FileModel extends Document, IFile {
+export interface SubmissionFileModel extends Document, ISubmissionFile {
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface IFile {
+export interface ISubmissionFile {
   extension: string;
-  file: string;
-  name: string;
+  contents: string;
+  filename: string;
   path: string;
   submission: SubmissionModel;
+  size: number;
 }
 
-export const File = model<FileModel>('File', fileSchema);
+export const SubmissionFile = model<SubmissionFileModel>('File', submissionFileSchema);

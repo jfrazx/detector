@@ -1,9 +1,9 @@
 import { model, Schema, Document } from 'mongoose';
 import {
   ExamModel,
-  FileModel,
   StackModel,
   StudentModel,
+  SubmissionFileModel,
   UserModel
 } from './';
 
@@ -17,6 +17,11 @@ const submissionSchema = new Schema({
     ref: 'Belt',
     type: Schema.Types.ObjectId,
   },
+  stack: {
+    ref: 'Stack',
+    required: true,
+    type: Schema.Types.ObjectId,
+  },
   exam: {
     ref: 'Exam',
     required: true,
@@ -24,7 +29,7 @@ const submissionSchema = new Schema({
   },
   files: [
     {
-      ref: 'File',
+      ref: 'SubmissionFile',
       required: true,
       type: Schema.Types.ObjectId,
     },
@@ -36,6 +41,11 @@ const submissionSchema = new Schema({
   instructor: {
     ref: 'User',
     type: Schema.Types.ObjectId,
+  },
+  integrity: {
+    default: true,
+    required: true,
+    type: Boolean,
   },
   takenOn: {
     default: Date.now,
@@ -62,10 +72,11 @@ options);
 
 export interface SubmissionModel extends Document {
   exam: ExamModel;
-  files: Array<FileModel>;
+  files: Array<SubmissionFileModel>;
   stack: StackModel;
   student: StudentModel;
   instructor: UserModel;
+  integrity: boolean;
   takenOn: Date;
   source: {
     link: string,

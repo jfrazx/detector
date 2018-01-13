@@ -1,21 +1,21 @@
-import { CRUD } from '../interfaces/crud';
+import { CRUD } from '../interfaces';
 import { Location } from '../models';
-import { Request, Response, Next } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 class LocationController implements CRUD {
-  async index(request: Request, response: Response, next: Next): Promise<void> {
+  async index(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(await Location.find({}));
   }
-  async show(request: Request, response: Response, next: Next): Promise<void> {
+  async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(await Location.findById(request.params.id));
   }
-  async create(request: Request, response: Response, next: Next): Promise<void> {
+  async create(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(await Location.create(request.body));
   }
-  async update(request: Request, response: Response, next: Next): Promise<void> {
+  async update(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(await Location.findByIdAndUpdate(request.params.id, { $set: request.body }));
   }
-  async destroy(request: Request, response: Response, next: Next): Promise<void> {
+  async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(await Location.findByIdAndRemove(request.params.id));
   }
 }

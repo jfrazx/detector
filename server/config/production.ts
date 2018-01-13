@@ -1,1 +1,1 @@
-export const production = process.env.NODE_ENV === 'production';
+export const PRODUCTION = process.env.NODE_ENV === 'production';
