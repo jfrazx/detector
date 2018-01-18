@@ -11,7 +11,7 @@ class RoleController implements CRUD {
   }
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Role.findById(request.params.id)
+      await Role.findById(request.params.role_id)
         .populate('capabilities')
     );
   }
@@ -19,10 +19,10 @@ class RoleController implements CRUD {
     response.json(await Role.create(request.body));
   }
   async update(request: Request, response: Response, next: NextFunction): Promise<void> {
-    response.json(await Role.findByIdAndUpdate(request.params.id, { $set: request.body }));
+    response.json(await Role.findByIdAndUpdate(request.params.role_id, { $set: request.body }));
   }
   async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
-    response.json(await Role.findByIdAndRemove(request.params.id));
+    response.json(await Role.findByIdAndRemove(request.params.role_id));
   }
 }
 

@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<app-stack-new></app-stack-new>
+
+<section>
+  <ol class="list-group">
+    <li *ngFor='let stack of stacks' class="list-group-item">
+      <h3 class='pull-right'>
+        <small class="text-uppercase">Joined {{ stack.created_at | date }}</small>
+      </h3>
+      <h2 class='h3'>
+        {{ stack.first_name }} {{ stack.last_name }}
+        <small>{{ stack.username }}</small>
+      </h2>
+      <h4>{{ stack.email }}</h4>
+    </li>
+  </ol>
+</section>
+
+<app-footer></app-footer>

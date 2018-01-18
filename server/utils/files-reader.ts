@@ -1,6 +1,7 @@
 import * as klaw from 'klaw';
 import * as through2 from 'through2';
 import { inRange } from './helpers';
+import { Transform } from 'stream';
 /**
  *
  *
@@ -104,7 +105,7 @@ class Walker {
   private skipSize(min: number = 10, max: number = 10000) {
     return function(item: klaw.Item, enc: string, next: Function): void {
       if (inRange(item.stats.size, min, max)) {
-        (this as any).push(item);
+        (this as Transform).push(item);
       }
       next();
     };
@@ -140,7 +141,7 @@ class Walker {
    */
   private excludeDirectories(item: klaw.Item, enc: string, next: Function): void {
     if (!item.stats.isDirectory()) {
-      (<any>this).push(item);
+      (this as any as Transform).push(item);
     }
     next();
   }

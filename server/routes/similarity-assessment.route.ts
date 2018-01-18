@@ -6,7 +6,7 @@ export const router = Router();
 
 router
   .get('/', wrapper(similarityAssessmentController.index))
-  .get('/:id', wrapper(similarityAssessmentController.show))
+  .get('/:similarity_id', wrapper(similarityAssessmentController.show))
   .post('/', wrapper(similarityAssessmentController.create))
-  .put('/:id', wrapper(similarityAssessmentController.update))
-  .delete('/:id', wrapper(similarityAssessmentController.destroy));
+  .put('/:similarity_id', wrapper(similarityAssessmentController.update))
+  .delete('/:similarity_id', wrapper(similarityAssessmentController.destroy));

@@ -1,0 +1,19 @@
+<form (submit)='onSubmit(stackForm)' #stackForm='ngForm'>
+  <div class='form-group'>
+    <label for="stack">Stack</label>
+    <input type="text" name='stack' placeholder='MEAN' class='form-control'>
+  </div>
+  <div class='form-group'>
+    <label for="ignore-directories">Ignore Directories</label>
+    <input type="text" name='stack' class='form-control'>
+  </div>
+  <div class='form-group'>
+    <label for="ignore-files">Ignore Files</label>
+    <input type="text" name='stack' class='form-control'>
+  </div>
+
+  <button
+    class='float-right btn btn-primary'
+    *ngIf='stackForm.valid'
+  >Submit</button>
+</form>

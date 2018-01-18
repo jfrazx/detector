@@ -11,7 +11,7 @@ class ExamController implements CRUD {
   }
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Exam.findById(request.params.id)
+      await Exam.findById(request.params.exam_id)
         .lean()
     );
   }
@@ -20,13 +20,13 @@ class ExamController implements CRUD {
   }
   async update(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Exam.findByIdAndUpdate(request.params.id, { $set: request.body })
+      await Exam.findByIdAndUpdate(request.params.exam_id, { $set: request.body })
         .lean()
     );
   }
   async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Exam.findByIdAndRemove(request.params.id)
+      await Exam.findByIdAndRemove(request.params.exam_id)
         .lean()
     );
   }

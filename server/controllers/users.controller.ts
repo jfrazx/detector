@@ -11,7 +11,7 @@ class UserController implements CRUD {
   }
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await User.findById(request.params.id)
+      await User.findById(request.params.user_id)
         .lean()
     );
   }
@@ -20,12 +20,12 @@ class UserController implements CRUD {
   }
   async update(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await User.findByIdAndUpdate(request.params.id, { $set: request.body })
+      await User.findByIdAndUpdate(request.params.user_id, { $set: request.body })
         .lean()
     );
   }
   async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
-    response.json(await User.findByIdAndRemove(request.params.id));
+    response.json(await User.findByIdAndRemove(request.params.user_id));
   }
 }
 

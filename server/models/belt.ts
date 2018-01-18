@@ -3,7 +3,7 @@ import { model, Schema, Document } from 'mongoose';
 const beltSchema = new Schema({
   color: {
     lowercase: true,
-    required: true,
+    required: [true, 'Color is required information'],
     trim: true,
     type: String,
     unique: true,

@@ -1,18 +1,16 @@
-import * as Promise from 'bluebird';
-import * as debuggable from 'debug';
+import * as uniqueValidator from 'mongoose-unique-validator';
+import { configuration, DbConfig } from './configuration';
+import { PRODUCTION } from './production';
 import * as mongoose from 'mongoose';
 import * as models from '../models';
-import * as uniqueValidator from 'mongoose-unique-validator';
-import { join, resolve } from 'path';
-import { PRODUCTION } from './production';
+import { debug } from '../utils';
 import { inspect } from 'util';
+import { ENV } from './env';
 
-const debug = debuggable('dojo-detector');
-export const database = `dojo-detector_${ databaseEntity() }`;
+const config: DbConfig = Object.assign(configuration.database[ENV], configuration.database.default);
+export const uri = `${ config.adapter }://${ config.host }:${ config.port }/${ config.database }`;
 
-mongoose.connect(`mongodb://localhost/${ database }`);
-(mongoose as any).Promise = Promise;
-
+mongoose.connect(uri, config.options);
 mongoose.plugin(uniqueValidator,  { message: '{PATH} must be unique' });
 
 if (!PRODUCTION) {
@@ -22,7 +20,7 @@ if (!PRODUCTION) {
   *  When successfully connected
   */
   mongoose.connection.on('connected', () => {
-    console.log(`Mongoose default connection open to ${ database }`);
+    console.log(`Mongoose default connection open to ${ uri }`);
   });
 
   /*
@@ -59,9 +57,4 @@ if (!PRODUCTION) {
       process.exit(0);
     });
   });
-
-}
-
-function databaseEntity(): string {
-  return process.env.NODE_ENV || 'development';
 }

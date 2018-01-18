@@ -3,6 +3,7 @@ import { SubmissionFileModel } from './submission-file';
 
 const fingerPrintSchema = new Schema({
   filename: {
+    index: true,
     required: true,
     trim: true,
     type: String,
@@ -13,6 +14,7 @@ const fingerPrintSchema = new Schema({
     type: Schema.Types.ObjectId,
   },
   method: {
+    index: true,
     type: String,
     required: true,
   },
@@ -24,13 +26,16 @@ const fingerPrintSchema = new Schema({
   timestamps: true,
 });
 
-export interface FingerPrintModel extends Document {
+export interface FingerPrintModel extends Document, IFingerPrint {
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IFingerPrint {
   file: SubmissionFileModel;
   filename: string;
   method: string;
   contents: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 export const FingerPrint = model<FingerPrintModel>('FingerPrint', fingerPrintSchema);

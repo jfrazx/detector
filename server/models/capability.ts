@@ -2,7 +2,7 @@ import { model, Schema, Document } from 'mongoose';
 
 const capabilitySchema = new Schema({
   ability: {
-    required: true,
+    required: [true, 'Ability is required information'],
     trim: true,
     type: String,
     unique: true,

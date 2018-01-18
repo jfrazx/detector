@@ -1,5 +1,4 @@
-import { read } from './files-reader';
-import { FileData } from './files-reader';
+import { read, FileData, WalkOptions } from './files-reader';
 import * as cloner from 'git-clone';
 
 /**
@@ -16,7 +15,12 @@ export async function clone(
   link: string,
   source: string,
   directory: string,
-  { ignore_directories, ignore_files }: Ignore
+  {
+    ignore_directories,
+    ignore_files,
+    min_file_size,
+    max_file_size,
+  }: WalkOptions
 ): Promise<FileData[]> {
     const repo = await cloner(link, source);
 
@@ -25,11 +29,8 @@ export async function clone(
             {
               ignore_directories,
               ignore_files,
+              min_file_size,
+              max_file_size,
             }
           );
-}
-
-interface Ignore {
-  ignore_directories: Array<string>;
-  ignore_files: Array<string>;
 }

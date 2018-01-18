@@ -6,7 +6,7 @@ export const router = Router();
 
 router
   .get('/', wrapper(submissionFileController.index))
-  .get('/:id', wrapper(submissionFileController.show))
+  .get('/:file_id', wrapper(submissionFileController.show))
   .post('/', wrapper(submissionFileController.create))
-  .put('/:id', wrapper(submissionFileController.update))
-  .delete('/:id', wrapper(submissionFileController.destroy));
+  .put('/:file_id', wrapper(submissionFileController.update))
+  .delete('/:file_id', wrapper(submissionFileController.destroy));

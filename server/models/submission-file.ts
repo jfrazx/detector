@@ -3,10 +3,12 @@ import { SubmissionModel } from './submission';
 
 const submissionFileSchema = new Schema({
   extension: {
+    index: true,
     trim: true,
     type: String,
   },
   filename: {
+    index: true,
     required: true,
     trim: true,
     type: String,

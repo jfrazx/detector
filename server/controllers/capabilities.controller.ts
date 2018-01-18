@@ -11,7 +11,7 @@ class CapabilityController implements CRUD {
   }
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Capability.findById(request.params.id)
+      await Capability.findById(request.params.capability_id)
           .lean()
     );
   }
@@ -20,13 +20,13 @@ class CapabilityController implements CRUD {
   }
   async update(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Capability.findByIdAndUpdate(request.params.id, { $set: request.body })
+      await Capability.findByIdAndUpdate(request.params.capability_id, { $set: request.body })
           .lean()
     );
   }
   async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Capability.findByIdAndRemove(request.params.id)
+      await Capability.findByIdAndRemove(request.params.capability_id)
           .lean()
     );
   }

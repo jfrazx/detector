@@ -44,7 +44,12 @@ const simliarityAssessmentSchema = new Schema({
 },
 options);
 
-interface SimilarityAssessmentModel extends Document {
+export interface SimilarityAssessmentModel extends Document, ISimilarityAssessment {
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ISimilarityAssessment {
   source: SubmissionModel;
   reference: SubmissionModel;
   stack: StackModel;

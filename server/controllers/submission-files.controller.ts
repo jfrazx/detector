@@ -2,7 +2,7 @@ import { CRUD } from '../interfaces';
 import { SubmissionFile } from '../models';
 import { Request, Response, NextFunction } from 'express';
 
-class FileController implements CRUD {
+class SubmissionFileController implements CRUD {
   async index(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
       await SubmissionFile.find({})
@@ -11,7 +11,7 @@ class FileController implements CRUD {
   }
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await SubmissionFile.findById(request.params.id)
+      await SubmissionFile.findById(request.params.file_id)
               .lean()
     );
   }
@@ -20,16 +20,16 @@ class FileController implements CRUD {
   }
   async update(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await SubmissionFile.findByIdAndUpdate(request.params.id, { $set: request.body })
+      await SubmissionFile.findByIdAndUpdate(request.params.file_id, { $set: request.body })
               .lean()
     );
   }
   async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await SubmissionFile.findByIdAndRemove(request.params.id)
+      await SubmissionFile.findByIdAndRemove(request.params.file_id)
               .lean()
     );
   }
 }
 
-export const submissionFileController = new FileController();
+export const submissionFileController = new SubmissionFileController();

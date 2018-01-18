@@ -1,27 +1,27 @@
-import { CRUD } from '../interfaces';
-import { SubmissionFile, Submission, Stack } from '../models';
+import { FingerPrint, SubmissionFile, Submission, Stack } from '../models';
 import { Request, Response, NextFunction } from 'express';
-import { build } from '../utils';
+import { build, baseline, flatten } from '../utils';
+import { CRUD } from '../interfaces';
+import { API } from '../config';
 
 
 class SubmissionController implements CRUD {
   async index(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
       await Submission.find({})
-        .lean()
         .populate('student')
         .populate('exam')
+        .lean()
         .exec()
     );
   }
 
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Submission.findById(request.params.id)
+      await Submission.findById(request.params.submission_id)
         .populate('exam')
         .populate('instructor')
         .populate('student')
-        .populate('files')
         .lean()
         .exec()
     );
@@ -37,6 +37,8 @@ class SubmissionController implements CRUD {
 
     submission.files = await build(submission, stack);
 
+    FingerPrint.insertMany(flatten(await baseline(submission.files)));
+
     await submission.save();
 
     response.json(submission);
@@ -51,14 +53,14 @@ class SubmissionController implements CRUD {
   async update(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
       await Submission
-              .findByIdAndUpdate(request.params.id, { $set: request.body })
+              .findByIdAndUpdate(request.params.submission_id, { $set: request.body })
               .lean()
               .exec()
     );
   }
 
   async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
-    const submission = await Submission.findByIdAndRemove(request.params.id);
+    const submission = await Submission.findByIdAndRemove(request.params.submission_id);
     const files = await SubmissionFile.remove({ submission: submission._id });
 
     response.json(submission);

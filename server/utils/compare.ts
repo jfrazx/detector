@@ -54,7 +54,6 @@ class FileRating {
 
   /**
    *
-   *
    * @returns {Promise<Rated>}
    * @memberof FileRating
    */
@@ -77,11 +76,11 @@ class FileRating {
    * @memberof FileRating
    */
   private async buildRatings(): Promise<void> {
-    for (const content of this.references) {
+    for (const reference of this.references) {
       this.ratings.push({
-        target: content.filename,
-        reference: content.file || content._id,
-        rating: await this.diceCompare(this.source.filename, content.contents),
+        target: reference.filename,
+        reference: reference.file || reference._id,
+        rating: await this.similarity(this.source.contents, reference.contents),
       });
     }
   }
@@ -94,7 +93,7 @@ class FileRating {
    * @returns {Promise<number>}
    * @memberof FileRating
    */
-  private diceCompare(source: string, reference: string): Promise<number> {
+  private similarity(source: string, reference: string): Promise<number> {
     return Promise.resolve<number>(dice(source, reference));
   }
 

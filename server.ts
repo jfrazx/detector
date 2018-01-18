@@ -1,9 +1,8 @@
-import { PRODUCTION } from './server/config';
+import { API, PRODUCTION } from './server/config';
 import { normalizePort } from './server/utils';
 import { json, urlencoded } from 'body-parser';
 import { join } from 'path';
 
-// import * as __ from './server/config/database';
 import { routes, catchAll } from './server/routes';
 
 import * as express from 'express';
@@ -18,14 +17,15 @@ const app = express();
 
 app.set('port', port);
 
+// setup express middleware
 app.use(helmet())
   .use(compress())
   .use(logger('dev'))
   .use(json())
   .use(urlencoded({ extended: true }))
   .use(express.static(join(root, 'public')))
-  .use('/api/v1', routes)
-  .use(catchAll);
+  .use(API, routes)
+  .use(catchAll)
 
 
-app.listen(port, () => console.log(`Express server listening on port ${ port }`));
+  .listen(port, () => console.log(`Express server listening on port ${ port }`));

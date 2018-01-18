@@ -4,23 +4,25 @@ import { StackModel } from './stack';
 const examSchema = new Schema({
   active: {
     default: true,
+    index: true,
     required: true,
     type: Boolean,
   },
   name: {
-    required: true,
+    required: [true, 'Exam name is required'],
+    index: true,
     trim: true,
     type: String,
     unique: true,
   },
   option: {
-    required: true,
+    required: [true, 'Which exam option is this?'],
     trim: true,
     type: String,
   },
   stack: {
     ref: 'Stack',
-    required: true,
+    required: [true, 'To which stack does this exam belong?'],
     type: Schema.Types.ObjectId,
   },
   wireframe: {

@@ -11,7 +11,7 @@ class BeltController implements CRUD {
   }
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(
-      await Belt.findById(request.params.id)
+      await Belt.findById(request.params.belt_id)
         .lean()
     );
   }
@@ -22,14 +22,14 @@ class BeltController implements CRUD {
     response.json(
       await Belt
           .findByIdAndUpdate(
-            request.params.id,
+            request.params.belt_id,
             { $set: request.body }
           )
           .lean()
     );
   }
   async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
-    response.json(await Belt.findByIdAndRemove(request.params.id));
+    response.json(await Belt.findByIdAndRemove(request.params.belt_id));
   }
 }
 

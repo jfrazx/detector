@@ -6,7 +6,7 @@ export const router = Router();
 
 router
   .get('/', wrapper(examController.index))
-  .get('/:id', wrapper(examController.show))
+  .get('/:exam_id', wrapper(examController.show))
   .post('/', wrapper(examController.create))
-  .put('/:id', wrapper(examController.update))
-  .delete('/:id', wrapper(examController.destroy));
+  .put('/:exam_id', wrapper(examController.update))
+  .delete('/:exam_id', wrapper(examController.destroy));

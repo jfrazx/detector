@@ -3,7 +3,7 @@ import { StackModel } from './stack';
 
 const locationSchema = new Schema({
   city: {
-    required: true,
+    required: [true, 'In which city is this Dojo location?'],
     trim: true,
     type: String,
     unique: true,

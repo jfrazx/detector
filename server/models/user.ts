@@ -10,11 +10,13 @@ const options: any = {
 
 const userSchema = new Schema({
   first_name: {
+    index: true,
     required: true,
     trim: true,
     type: String,
   },
   last_name: {
+    index: true,
     required: true,
     trim: true,
     type: String,
@@ -39,6 +41,7 @@ const userSchema = new Schema({
     match: /^[A-Za-z0-9]+@codingdojo\.com$/,
     trim: true,
     type: String,
+    unique: true,
     validate: [
       {
         validator(value: string): boolean {
@@ -61,7 +64,7 @@ userSchema.pre('save', function(next) {
     .catch(next);
 });
 
-userSchema.statics.validatePassword = function(candidatePassword, hashedPassword) {
+userSchema.statics.validatePassword = function(candidatePassword: string, hashedPassword: string): Promise<boolean> {
   return bcrypt.compare(candidatePassword, hashedPassword);
 };
 

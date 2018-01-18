@@ -6,7 +6,7 @@ export const router = Router();
 
 router
   .get('/', wrapper(locationController.index))
-  .get('/:id', wrapper(locationController.show))
+  .get('/:location_id', wrapper(locationController.show))
   .post('/', wrapper(locationController.create))
-  .put('/:id', wrapper(locationController.update))
-  .delete('/:id', wrapper(locationController.destroy));
+  .put('/:location_id', wrapper(locationController.update))
+  .delete('/:location_id', wrapper(locationController.destroy));

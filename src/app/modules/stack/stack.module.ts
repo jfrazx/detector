@@ -1,13 +1,44 @@
-import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
+// modules
+import { SharedModule } from '../shared';
+
+// routing
 import { StackRoutingModule } from './stack-routing.module';
 
+// services
+import { StackService } from './services/stack.service';
+
+// components
+import {
+  StackComponent,
+  StackNewComponent,
+  StackFormComponent,
+  StackShowComponent,
+  StackDetailsComponent,
+} from './components';
+
+
 @NgModule({
-  imports: [
-    CommonModule,
-    StackRoutingModule
+  declarations: [
+    StackComponent,
+    StackNewComponent,
+    StackFormComponent,
+    StackShowComponent,
+    StackDetailsComponent,
   ],
-  declarations: []
+  imports: [
+    FormsModule,
+    CommonModule,
+    SharedModule,
+    HttpClientModule,
+    StackRoutingModule,
+  ],
+  providers: [
+    StackService,
+  ],
 })
 export class StackModule { }

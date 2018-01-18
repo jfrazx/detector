@@ -3,7 +3,7 @@ import { CapabilityModel } from './capability';
 
 const roleSchema = new Schema({
   role: {
-    required: true,
+    required: [true, 'Role is required information'],
     trim: true,
     type: String,
     unique: true,

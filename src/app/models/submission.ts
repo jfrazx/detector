@@ -4,6 +4,7 @@ import { SubmissionFile } from './submission-file';
 import { User } from './user';
 
 export class Submission {
+  _id: string;
   exam: Exam;
   files: Array<SubmissionFile>;
   student: Student;

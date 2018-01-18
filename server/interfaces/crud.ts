@@ -8,4 +8,4 @@ export interface CRUD {
   update: RequestHandler;
 }
 
-export type Asyncable<T> = (request: Request, response: Response, next: NextFunction) => Promise<T | T[]>;
+export type Asyncable = (request: Request, response: Response, next: NextFunction) => Promise<any>;

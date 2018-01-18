@@ -44,6 +44,7 @@ const submissionSchema = new Schema({
   },
   integrity: {
     default: true,
+    index: true,
     required: true,
     type: Boolean,
   },

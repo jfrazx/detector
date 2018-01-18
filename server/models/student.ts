@@ -9,11 +9,13 @@ const studentSchema = new Schema({
     type: Schema.Types.ObjectId,
   },
   first_name: {
+    index: true,
     required: true,
     trim: true,
     type: String,
   },
   last_name: {
+    index: true,
     required: true,
     trim: true,
     type: String,
@@ -21,6 +23,7 @@ const studentSchema = new Schema({
   email: {
     trim: true,
     type: String,
+    unique: true,
     validate: {
       validator(value) {
         return isEmail(value);

@@ -1,6 +1,7 @@
 export * from './belt';
 export * from './capability';
 export * from './exam';
+export * from './fingerprint';
 export * from './location';
 export * from './rating';
 export * from './role';

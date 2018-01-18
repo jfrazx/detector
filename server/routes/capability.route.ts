@@ -6,7 +6,7 @@ export const router = Router();
 
 router
   .get('/', wrapper(capabilityController.index))
-  .get('/:id', wrapper(capabilityController.show))
+  .get('/:capability_id', wrapper(capabilityController.show))
   .post('/', wrapper(capabilityController.create))
-  .put('/:id', wrapper(capabilityController.update))
-  .delete('/:id', wrapper(capabilityController.destroy));
+  .put('/:capability_id', wrapper(capabilityController.update))
+  .delete('/:capability_id', wrapper(capabilityController.destroy));

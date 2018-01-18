@@ -1,1 +1,2 @@
-export const PRODUCTION = process.env.NODE_ENV === 'production';
+import { ENV } from './env';
+export const PRODUCTION = ENV === 'production';

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
+
 
 // Components
 import { AppComponent } from './app.component';
@@ -14,7 +16,17 @@ import { AppRoutingModule } from './app-routing.module';
 // Modules
 import {
   AuthModule,
+  BeltModule,
+  CapabilityModule,
+  ExamModule,
+  LocationModule,
+  RoleModule,
   SharedModule,
+  StackModule,
+  StudentModule,
+  SubmissionModule,
+  SubmissionFileModule,
+  UserModule,
 } from './modules';
 
 @NgModule({
@@ -26,7 +38,18 @@ import {
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
+    BeltModule,
+    CapabilityModule,
+    ExamModule,
+    LocationModule,
+    RoleModule,
     SharedModule,
+    StackModule,
+    StudentModule,
+    SubmissionModule,
+    SubmissionFileModule,
+    UserModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     ...(Object.keys(services).map(service => services[service])),

@@ -18,7 +18,7 @@ const stackSchema = new Schema({
     },
   ],
   stack: {
-    required: true,
+    required: [true, 'Stack is required information'],
     trim: true,
     type: String,
     unique: true,
