@@ -7,11 +7,13 @@ import {
   FooterComponent,
   HeaderComponent,
 } from './components';
+import { GroupPipe } from './pipes/group.pipe';
 
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    GroupPipe,
   ],
   imports: [
     NgbModule,
@@ -20,6 +22,7 @@ import {
   exports: [
     FooterComponent,
     HeaderComponent,
+    GroupPipe,
     NgbModule,
   ]
 })

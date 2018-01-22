@@ -1,5 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 import { StackModel } from './stack';
+import { UserModel } from './user';
 
 const locationSchema = new Schema({
   city: {
@@ -14,11 +15,18 @@ const locationSchema = new Schema({
       type: Schema.Types.ObjectId,
     },
   ],
+  instructors: [
+    {
+      ref: 'User',
+      type: Schema.Types.ObjectId,
+    }
+  ]
 });
 
 export interface LocationModel extends Document {
   city: string;
   stacks: Array<StackModel>;
+  user: Array<UserModel>;
 }
 
 export const Location = model<LocationModel>('Location', locationSchema);

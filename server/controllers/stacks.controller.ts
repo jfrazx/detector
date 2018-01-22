@@ -10,6 +10,7 @@ class StackController implements CRUD {
     response.json(await Stack.findById(request.params.stack_id));
   }
   async create(request: Request, response: Response, next: NextFunction): Promise<void> {
+    console.log('received stack to create', request.body);
     response.json(await Stack.create(request.body));
   }
   async update(request: Request, response: Response, next: NextFunction): Promise<void> {

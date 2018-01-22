@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StackDetailsComponent } from './details.component';
+import { StackTileComponent } from './tile.component';
 
-describe('StackDetailsComponent', () => {
-  let component: StackDetailsComponent;
-  let fixture: ComponentFixture<StackDetailsComponent>;
+describe('StackTileComponent', () => {
+  let component: StackTileComponent;
+  let fixture: ComponentFixture<StackTileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StackDetailsComponent ]
+      declarations: [ StackTileComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StackDetailsComponent);
+    fixture = TestBed.createComponent(StackTileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

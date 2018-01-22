@@ -1,0 +1,11 @@
+.form-control.ng-invalid:not(form).ng-touched, .form-control.ng-invalid:not(form).ng-dirty {
+  border: 2px solid #a94442;
+  background-color: rgb(250, 255, 189);
+}
+.form-control.ng-valid:not(form) {
+  border: 2px solid #42A948;
+}
+
+input.ng-invalid.ng-touched:focus {
+  border: 2px solid orange;
+}

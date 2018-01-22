@@ -1,6 +1,12 @@
-export class Stack {
+export class Stack implements IStack {
   _id: string;
   ignore_directories: Array<string>;
   ignore_files: Array<string>;
-  stack: string;
+  name: string;
+}
+
+export interface IStack {
+  ignore_directories: Array<string>;
+  ignore_files: Array<string>;
+  name: string;
 }

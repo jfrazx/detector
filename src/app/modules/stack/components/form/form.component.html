@@ -1,19 +1,121 @@
-<form (submit)='onSubmit(stackForm)' #stackForm='ngForm'>
-  <div class='form-group'>
-    <label for="stack">Stack</label>
-    <input type="text" name='stack' placeholder='MEAN' class='form-control'>
-  </div>
-  <div class='form-group'>
-    <label for="ignore-directories">Ignore Directories</label>
-    <input type="text" name='stack' class='form-control'>
-  </div>
-  <div class='form-group'>
-    <label for="ignore-files">Ignore Files</label>
-    <input type="text" name='stack' class='form-control'>
-  </div>
+<!-- @todo  extract ignore_directories and ignore_files into separate components -->
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-12">
+        <div class="margin-20">
+          <h4>Stackables</h4>
+        </div>
+        <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)">
+          <div class="form-group" class="margin-20">
+            <label class='control-label'>Name</label>
+            <input type="text" class="form-control" formControlName="name">
+            <small
+              *ngIf="
+                form.get('name').touched &&
+                form.get('name').hasError('minlength')
+              "
+              class="text-danger">
+                Name must be at least {{
+                  form.controls.name.errors.minlength.requiredLength
+                }} characters, {{
+                  form.controls.name.errors.minlength.requiredLength - form.controls.name.errors.minlength.actualLength
+                }} more characters needed.
+              </small>
+              <small
+              *ngIf="
+                form.get('name').touched &&
+                form.get('name').hasError('required')
+              "
+              class="text-danger">
+                Name is required
+              </small>
+          </div>
+          <!--ignore_directories-->
+          <div formArrayName="ignore_directories">
+            <h5>Ignore Directories</h5>
+            <div
+              *ngFor="let directory of form.controls.ignore_directories.controls; let idx = index"
+              class="panel panel-default"
+              >
+              <div class="panel-heading">
+                <span>Directory {{ idx + 1 }}</span>
+                <span
+                  class="float-right"
+                  (click)="removeField(idx, 'ignore_directories')">
+                    <fa name="times-circle"></fa>
+                </span>
+              </div>
+              <div class="panel-body" [formGroupName]="idx">
+                <div class="form-group col-xs-6">
+                  <input type="text" class="form-control" formControlName="field">
+                  <small
+                    *ngIf="
+                      directory.get('field').touched &&
+                      directory.get('field').errors
+                    "
+                    class="text-danger"
+                  >
+                      Field is required
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <button
-    class='float-right btn btn-primary'
-    *ngIf='stackForm.valid'
-  >Submit</button>
-</form>
+          <div class="margin-20">
+            <button (click)="addField('ignore_directories')" style="cursor: default">
+              <fa name="plus"></fa>
+            </button>
+          </div>
+
+          <!--ignore_files-->
+          <div formArrayName="ignore_files" class="margin-20">
+              <h5>Ignore Files</h5>
+              <div
+                *ngFor="let file of form.controls.ignore_files.controls; let idx = index"
+                class="panel panel-default"
+                >
+                <div class="panel-heading">
+                  <span>File {{ idx + 1 }}</span>
+                  <span
+                    class="float-right"
+                    (click)="removeField(idx, 'ignore_files')">
+                      <fa name="times-circle"></fa>
+                  </span>
+                </div>
+                <div class="panel-body" [formGroupName]="idx">
+                  <div class="form-group col-xs-6">
+                    <input type="text" class="form-control" formControlName="field">
+                    <small
+                      *ngIf="
+                        file.get('field').touched &&
+                        file.get('field').errors
+                      "
+                      class="text-danger"
+                    >
+                        Field is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="margin-20">
+              <button (click)="addField('ignore_files')" style="cursor: default">
+                <fa name="plus"></fa>
+              </button>
+            </div>
+
+          <div class="margin-20">
+            <button
+              type="submit"
+              class="btn btn-primary float-right"
+              [disabled]="form.invalid">
+                Submit
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>

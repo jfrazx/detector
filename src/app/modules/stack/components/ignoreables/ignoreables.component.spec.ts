@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StackShowComponent } from './show.component';
+import { StackIgnoreablesComponent } from './ignoreables.component';
 
-describe('StackShowComponent', () => {
-  let component: StackShowComponent;
-  let fixture: ComponentFixture<StackShowComponent>;
+describe('StackIgnoreablesComponent', () => {
+  let component: StackIgnoreablesComponent;
+  let fixture: ComponentFixture<StackIgnoreablesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StackShowComponent ]
+      declarations: [ StackIgnoreablesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StackShowComponent);
+    fixture = TestBed.createComponent(StackIgnoreablesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

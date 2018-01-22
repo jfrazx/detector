@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { StackComponent, StackShowComponent } from './components';
+import {
+  StackComponent,
+  StackNewComponent,
+  StackEditComponent,
+  StackListComponent,
+} from './components';
 
 const routes: Routes = [
   {
@@ -9,9 +14,22 @@ const routes: Routes = [
     component: StackComponent,
     children: [
       {
-        path: ':id',
-        component: StackShowComponent,
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full',
       },
+      {
+        path: 'new',
+        component: StackNewComponent,
+      },
+      {
+        path: 'list',
+        component: StackListComponent,
+      },
+      {
+        path: ':id/edit',
+        component: StackEditComponent,
+      }
     ],
   },
 ];

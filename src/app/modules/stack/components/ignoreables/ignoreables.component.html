@@ -1,0 +1,11 @@
+<div class='row' *ngIf='ignoreables.length; else empty'>
+  <div class='tile-container' *ngFor='let grouped of ignoreables | group:3'>
+    <app-stack-tile
+      *ngFor='let ignore of grouped'
+      [text]='ignore'
+    >
+    </app-stack-tile>
+  </div>
+</div>
+
+<ng-template class='text-center' #empty>Nothing has been ignored...</ng-template>

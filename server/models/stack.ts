@@ -17,8 +17,8 @@ const stackSchema = new Schema({
       type: String,
     },
   ],
-  stack: {
-    required: [true, 'Stack is required information'],
+  name: {
+    required: [true, 'Stack name is required information'],
     trim: true,
     type: String,
     unique: true,
@@ -29,7 +29,7 @@ options);
 export interface StackModel extends Document {
   ignore_directories: Array<string>;
   ignore_files: Array<string>;
-  stack: string;
+  name: string;
 }
 
 export const Stack = model<StackModel>('Stack', stackSchema);

@@ -1,20 +1,11 @@
 <app-header></app-header>
+<!-- sub nav for stacks -->
 
-<app-stack-new></app-stack-new>
+for now .....
+<nav><a href="/stacks/new">Create New Stack</a></nav>
 
-<section>
-  <ol class="list-group">
-    <li *ngFor='let stack of stacks' class="list-group-item">
-      <h3 class='pull-right'>
-        <small class="text-uppercase">Joined {{ stack.created_at | date }}</small>
-      </h3>
-      <h2 class='h3'>
-        {{ stack.first_name }} {{ stack.last_name }}
-        <small>{{ stack.username }}</small>
-      </h2>
-      <h4>{{ stack.email }}</h4>
-    </li>
-  </ol>
-</section>
+<router-outlet></router-outlet>
+
+
 
 <app-footer></app-footer>

@@ -1,6 +1,7 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // modules
@@ -16,9 +17,13 @@ import { StackService } from './services/stack.service';
 import {
   StackComponent,
   StackNewComponent,
+  StackCardComponent,
+  StackEditComponent,
   StackFormComponent,
-  StackShowComponent,
+  StackListComponent,
+  StackTileComponent,
   StackDetailsComponent,
+  StackIgnoreablesComponent,
 } from './components';
 
 
@@ -26,9 +31,13 @@ import {
   declarations: [
     StackComponent,
     StackNewComponent,
+    StackCardComponent,
+    StackEditComponent,
     StackFormComponent,
-    StackShowComponent,
+    StackListComponent,
     StackDetailsComponent,
+    StackIgnoreablesComponent,
+    StackTileComponent,
   ],
   imports: [
     FormsModule,
@@ -36,6 +45,8 @@ import {
     SharedModule,
     HttpClientModule,
     StackRoutingModule,
+    ReactiveFormsModule,
+    AngularFontAwesomeModule,
   ],
   providers: [
     StackService,
