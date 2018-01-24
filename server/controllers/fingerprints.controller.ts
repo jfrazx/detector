@@ -4,7 +4,9 @@ import { Request, Response, NextFunction } from 'express';
 
 class FingerPrintController implements CRUD {
   async index(request: Request, response: Response, next: NextFunction): Promise<void> {
-    response.json(await FingerPrint.find({}));
+    response.json(await FingerPrint.find({
+      submission: request.params.submission,
+    }));
   }
   async show(request: Request, response: Response, next: NextFunction): Promise<void> {
     response.json(await FingerPrint.findById(request.params.fingerprint_id));

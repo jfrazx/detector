@@ -54,7 +54,7 @@ class Walker {
   }
 
   /**
-   * Recursively traverse a directory, aggregating file data (paths and size)
+   * Recursively traverse a directory, aggregating file data (path and size)
    *
    * @returns {Promise<FileData[]>}
    * @memberof Walker
@@ -88,7 +88,7 @@ class Walker {
     const self = this;
 
     return function(item: klaw.Item, enc: string, next: Function): void {
-      if (self.skip(skippable)(item.path)) { (<any>this).push(item); }
+      if (self.skip(skippable)(item.path)) { (this as Transform).push(item); }
 
       next();
     };

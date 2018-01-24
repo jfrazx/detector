@@ -1,7 +1,11 @@
 import { Router } from 'express';
 
-import { validationHandler } from './middleware/validation';
-import { errorHandler, basicErrorHandler } from './middleware/errorHandler';
+import {
+  basicErrorHandler,
+  errorHandler,
+  errorLogger,
+  validationHandler,
+} from './middleware';
 
 import { router as authRouter } from './auth.route';
 import { router as beltRouter } from './belt.route';
@@ -35,7 +39,7 @@ routes
   .use('/users', userRouter)
 
 // Error Handling Middleware ....
-
+  .use(errorLogger)
   .use(validationHandler)
   .use(errorHandler)
   .use(basicErrorHandler);

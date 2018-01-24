@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { StackResolve } from './resolvers';
+
 import {
   StackComponent,
   StackNewComponent,
@@ -29,7 +31,10 @@ const routes: Routes = [
       {
         path: ':id/edit',
         component: StackEditComponent,
-      }
+        resolve: {
+          stack: StackResolve,
+        },
+      },
     ],
   },
 ];

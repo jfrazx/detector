@@ -21,13 +21,8 @@ export class StackEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.switchMap(params =>
-      this.stackService.show(params.get('id'))
-    )
-    .subscribe(
-      stack => this.stack = stack,
-      console.log
-    );
+    console.log(this.stack);
+    this.stack = this.route.snapshot.data.stack as Stack;
+    console.log(this.stack);
   }
-
 }

@@ -7,23 +7,29 @@ import {
   FooterComponent,
   HeaderComponent,
 } from './components';
-import { GroupPipe } from './pipes/group.pipe';
+
+import {
+  EachSlicePipe,
+} from './pipes';
+import { ClickLinkDirective } from './directives/click-link.directive';
 
 @NgModule({
   declarations: [
+    EachSlicePipe,
     FooterComponent,
     HeaderComponent,
-    GroupPipe,
+    ClickLinkDirective,
   ],
   imports: [
     NgbModule,
   ],
   providers: [],
   exports: [
+    NgbModule,
+    EachSlicePipe,
     FooterComponent,
     HeaderComponent,
-    GroupPipe,
-    NgbModule,
+    ClickLinkDirective,
   ]
 })
 export class SharedModule {}

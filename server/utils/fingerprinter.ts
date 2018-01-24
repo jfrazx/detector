@@ -16,6 +16,7 @@ class FingerPrinter {
         {
           file,
           filename: file.filename,
+          submission: file.submission,
           method: this.method,
           contents: await this.impression(file.contents),
         }

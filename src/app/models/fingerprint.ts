@@ -1,4 +1,5 @@
 import { SubmissionFile } from './submission-file';
+import { Submission } from './submission';
 
 export class FingerPrint {
   _id: string;
@@ -6,6 +7,7 @@ export class FingerPrint {
   filename: string;
   method: string;
   contents: string;
+  submission: Submission;
   createdAt: Date;
   updatedAt: Date;
 }

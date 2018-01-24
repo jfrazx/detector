@@ -1,5 +1,7 @@
-import { model, Schema, Document } from 'mongoose';
 import { SubmissionFileModel } from './submission-file';
+import { model, Schema, Document } from 'mongoose';
+import { SubmissionModel } from './submission';
+
 
 const fingerPrintSchema = new Schema({
   filename: {
@@ -21,7 +23,11 @@ const fingerPrintSchema = new Schema({
   contents: {
     required: true,
     type: String,
-  }
+  },
+  submission: {
+    ref: 'Submission',
+    type: Schema.Types.ObjectId,
+  },
 }, {
   timestamps: true,
 });
@@ -32,6 +38,7 @@ export interface FingerPrintModel extends Document, IFingerPrint {
 }
 
 export interface IFingerPrint {
+  submission: SubmissionModel;
   file: SubmissionFileModel;
   filename: string;
   method: string;

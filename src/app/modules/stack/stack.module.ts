@@ -26,6 +26,11 @@ import {
   StackIgnoreablesComponent,
 } from './components';
 
+// resolvers
+import {
+  StackResolve,
+} from './resolvers';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +55,7 @@ import {
   ],
   providers: [
     StackService,
+    StackResolve,
   ],
 })
 export class StackModule { }
