@@ -3,7 +3,5 @@ import { Belt } from '../models';
 
 @Injectable()
 export class BeltService {
-
-  constructor() { }
-
+  constructor() {}
 }

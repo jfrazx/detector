@@ -8,55 +8,60 @@ const options: any = {
   usePushEach: true,
 };
 
-const userSchema = new Schema({
-  first_name: {
-    index: true,
-    required: true,
-    trim: true,
-    type: String,
-  },
-  last_name: {
-    index: true,
-    required: true,
-    trim: true,
-    type: String,
-  },
-  location: {
-    ref: 'Location',
-    type: Schema.Types.ObjectId,
-  },
-  roles: [
-    {
-      ref: 'Role',
+const userSchema = new Schema(
+  {
+    first_name: {
+      index: true,
+      required: true,
+      trim: true,
+      type: String,
+    },
+    last_name: {
+      index: true,
+      required: true,
+      trim: true,
+      type: String,
+    },
+    location: {
+      ref: 'Location',
       type: Schema.Types.ObjectId,
     },
-  ],
-  password: {
-    required: true,
-    trim: true,
-    type: String,
-  },
-  email: {
-    required: true,
-    match: /^[A-Za-z0-9]+@codingdojo\.com$/,
-    trim: true,
-    type: String,
-    unique: true,
-    validate: [
+    roles: [
       {
-        validator(value: string): boolean {
-          return isEmail(value);
-        },
+        ref: 'Role',
+        type: Schema.Types.ObjectId,
       },
     ],
+    password: {
+      required: true,
+      trim: true,
+      type: String,
+    },
+    email: {
+      required: true,
+      match: /^[A-Za-z0-9]+@codingdojo\.com$/,
+      trim: true,
+      type: String,
+      unique: true,
+      validate: [
+        {
+          validator(value: string): boolean {
+            return isEmail(value);
+          },
+        },
+      ],
+    },
   },
-},
-options);
+  options
+);
 
 userSchema.pre('save', function(next) {
-  if (this.isModified('password')) { return next(); }
+  if (this.isModified('password')) {
+    return next();
+  }
 
-  bcrypt.hash(this.password, 10)
+  bcrypt
+    .hash(this.password, 10)
     .then(hashed => {
       this.password = hashed;
       next();
@@ -64,7 +69,10 @@ userSchema.pre('save', function(next) {
     .catch(next);
 });
 
-userSchema.statics.validatePassword = function(candidatePassword: string, hashedPassword: string): Promise<boolean> {
+userSchema.statics.validatePassword = function(
+  candidatePassword: string,
+  hashedPassword: string
+): Promise<boolean> {
   return bcrypt.compare(candidatePassword, hashedPassword);
 };
 
@@ -79,7 +87,10 @@ export interface UserModel extends Document {
 }
 
 export interface IUser extends Model<UserModel> {
-  validatePassword(candidatePassword: string, hashedPassword: string): Promise<boolean>;
+  validatePassword(
+    candidatePassword: string,
+    hashedPassword: string
+  ): Promise<boolean>;
 }
 
 export const User = model<UserModel>('User', userSchema);

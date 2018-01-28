@@ -1,8 +1,8 @@
-import { GroupPipe } from './group.pipe';
+import { EachSlicePipe } from './each-slice.pipe';
 
-describe('GroupPipe', () => {
+describe('EachSlicePipe', () => {
   it('create an instance', () => {
-    const pipe = new GroupPipe();
+    const pipe = new EachSlicePipe();
     expect(pipe).toBeTruthy();
   });
 });

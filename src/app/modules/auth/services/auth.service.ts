@@ -3,7 +3,5 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-
-  constructor() { }
-
+  constructor() {}
 }

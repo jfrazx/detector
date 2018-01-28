@@ -19,8 +19,8 @@ const locationSchema = new Schema({
     {
       ref: 'User',
       type: Schema.Types.ObjectId,
-    }
-  ]
+    },
+  ],
 });
 
 export interface LocationModel extends Document {

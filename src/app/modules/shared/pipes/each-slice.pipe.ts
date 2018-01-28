@@ -4,10 +4,9 @@ import { Graph } from 'nodegit/graph';
 const toString = Object.prototype.toString;
 
 @Pipe({
-  name: 'eachSlice'
+  name: 'eachSlice',
 })
 export class EachSlicePipe implements PipeTransform {
-
   /**
    * Transform a string or array of values into
    * an array of arrays containing 'size' number of elements
@@ -21,15 +20,17 @@ export class EachSlicePipe implements PipeTransform {
   transform(values: string, size?: number): string[][];
   transform<T>(values: T[], size?: number): T[][];
   transform<T>(values: T[] | string, size: number = 2): any[][] {
-    if (this.isInvalidType(values)) { return values as any; }
-    if (this.isInvalidSize(size)) { size = 2; }
+    if (this.isInvalidType(values)) {
+      return values as any;
+    }
+    if (this.isInvalidSize(size)) {
+      size = 2;
+    }
 
     const results: any[][] = [];
 
     for (let index = 0; index < values.length; index += size) {
-      results.push(
-        values.slice(index, index + size)  as any
-      );
+      results.push(values.slice(index, index + size) as any);
     }
 
     return results;
@@ -56,8 +57,10 @@ export class EachSlicePipe implements PipeTransform {
    * @memberof EachSlicePipe
    */
   private isInvalidSize(value: any): boolean {
-    return isNaN(parseInt(toString.call(value), 10)) ||
-            !Number.isInteger(value) ||
-            value <= 0;
+    return (
+      isNaN(parseInt(toString.call(value), 10)) ||
+      !Number.isInteger(value) ||
+      value <= 0
+    );
   }
 }

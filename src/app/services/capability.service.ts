@@ -3,7 +3,5 @@ import { Capability } from '../models';
 
 @Injectable()
 export class CapabilityService {
-
-  constructor() { }
-
+  constructor() {}
 }

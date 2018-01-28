@@ -4,12 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 
-
 // Components
 import { AppComponent } from './app.component';
 
 // Services
-import * as services from './services';
+import { services } from './services';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -31,9 +30,7 @@ import {
 } from './modules';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     AngularFontAwesomeModule,
     BrowserModule,
@@ -53,9 +50,7 @@ import {
     UserModule,
     NgbModule.forRoot(),
   ],
-  providers: [
-    ...(Object.keys(services).map(service => services[service])),
-  ],
-  bootstrap: [AppComponent]
+  providers: [...services],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

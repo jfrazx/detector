@@ -6,11 +6,14 @@ const capabilitySchema = new Schema({
     trim: true,
     type: String,
     unique: true,
-  }
+  },
 });
 
 export interface CapabilityModel extends Document {
   ability: string;
 }
 
-export const Capability = model<CapabilityModel>('Capability', capabilitySchema);
+export const Capability = model<CapabilityModel>(
+  'Capability',
+  capabilitySchema
+);

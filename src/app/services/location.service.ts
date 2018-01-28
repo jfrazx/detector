@@ -3,7 +3,5 @@ import { Location } from '../models';
 
 @Injectable()
 export class LocationService {
-
-  constructor() { }
-
+  constructor() {}
 }

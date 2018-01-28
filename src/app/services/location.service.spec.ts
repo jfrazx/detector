@@ -5,11 +5,14 @@ import { LocationService } from './location.service';
 describe('LocationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LocationService]
+      providers: [LocationService],
     });
   });
 
-  it('should be created', inject([LocationService], (service: LocationService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([LocationService], (service: LocationService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

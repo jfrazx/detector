@@ -21,8 +21,9 @@ export async function read(
     ignore_directories = [],
     ignore_files = [],
     min_file_size = 10,
-    max_file_size = 10000
-  }: WalkOptions = {}): Promise<FileData[]> {
+    max_file_size = 10000,
+  }: WalkOptions = {}
+): Promise<FileData[]> {
   const walker = new Walker(directory, {
     ignore_directories,
     ignore_files,
@@ -47,7 +48,9 @@ class Walker {
    * @memberof Walker
    */
   constructor(public directory: string, options: WalkOptions) {
-    this.ignoreDirectories = (options.ignore_directories || []).map(str => new RegExp(`\\/${str}\\/`));
+    this.ignoreDirectories = (options.ignore_directories || []).map(
+      str => new RegExp(`\\/${str}\\/`)
+    );
     this.ignoreFiles = (options.ignore_files || []).map(str => new RegExp(str));
     this.minFileSize = options.min_file_size;
     this.maxFileSize = options.max_file_size;
@@ -64,16 +67,17 @@ class Walker {
       klaw(this.directory, {
         filter: this.skip(this.ignoreDirectories),
       })
-      .pipe(through2.obj(this.excludeDirectories))
-      .pipe(through2.obj(this.skipFiles(this.ignoreFiles)))
-      .pipe(through2.obj(this.skipSize(this.minFileSize, this.maxFileSize)))
-      .on('data', (item: klaw.Item) => this.files.push({
-          path: item.path,
-          size: item.stats.size,
-        })
-      )
-      .on('error', reject)
-      .on('end', () => resolve(this.files));
+        .pipe(through2.obj(this.excludeDirectories))
+        .pipe(through2.obj(this.skipFiles(this.ignoreFiles)))
+        .pipe(through2.obj(this.skipSize(this.minFileSize, this.maxFileSize)))
+        .on('data', (item: klaw.Item) =>
+          this.files.push({
+            path: item.path,
+            size: item.stats.size,
+          })
+        )
+        .on('error', reject)
+        .on('end', () => resolve(this.files));
     });
   }
 
@@ -88,7 +92,9 @@ class Walker {
     const self = this;
 
     return function(item: klaw.Item, enc: string, next: Function): void {
-      if (self.skip(skippable)(item.path)) { (this as Transform).push(item); }
+      if (self.skip(skippable)(item.path)) {
+        (this as Transform).push(item);
+      }
 
       next();
     };
@@ -139,9 +145,13 @@ class Walker {
    * @param {Function} next
    * @memberof Walker
    */
-  private excludeDirectories(item: klaw.Item, enc: string, next: Function): void {
+  private excludeDirectories(
+    item: klaw.Item,
+    enc: string,
+    next: Function
+  ): void {
     if (!item.stats.isDirectory()) {
-      (this as any as Transform).push(item);
+      ((this as any) as Transform).push(item);
     }
     next();
   }

@@ -7,10 +7,13 @@
  * @param {number} [max=1]
  * @returns {boolean}
  */
-export function inRange(number: number, min: number = 0, max: number = 1): boolean {
+export function inRange(
+  number: number,
+  min: number = 0,
+  max: number = 1
+): boolean {
   return number >= Math.min(min, max) && number < Math.max(min, max);
 }
-
 
 /**
  * Flatten array of arrays

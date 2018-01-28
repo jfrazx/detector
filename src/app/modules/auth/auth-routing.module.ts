@@ -1,8 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [
-
-];
+const routes: Routes = [];
 
 export const AuthRoutingModule = RouterModule.forChild(routes);
-

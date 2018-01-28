@@ -5,11 +5,14 @@ import { SubmissionFileService } from './submission-file.service';
 describe('SubmissionFileService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SubmissionFileService]
+      providers: [SubmissionFileService],
     });
   });
 
-  it('should be created', inject([SubmissionFileService], (service: SubmissionFileService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([SubmissionFileService], (service: SubmissionFileService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

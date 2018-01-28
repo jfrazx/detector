@@ -30,7 +30,7 @@ const studentSchema = new Schema({
     validate: {
       validator(value) {
         return isEmail(value);
-      }
+      },
     },
   },
   submissions: [

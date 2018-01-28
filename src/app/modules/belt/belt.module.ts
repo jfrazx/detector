@@ -9,10 +9,7 @@ import { ListComponent } from './list/list.component';
 import { BeltRoutingModule } from './belt-routing.module';
 
 @NgModule({
-  declarations: [
-    BeltComponent,
-    ListComponent,
-  ],
+  declarations: [BeltComponent, ListComponent],
   imports: [],
   providers: [],
 })

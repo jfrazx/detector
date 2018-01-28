@@ -3,12 +3,15 @@ import { User, UserModel, IUser } from '../models';
 
 class AuthController {
   async login(request: Request, response: Response): Promise<void> {
-    const user = await User
-                        .findOne({ email: request.body.email })
-                        .lean() as UserModel;
+    const user = (await User.findOne({
+      email: request.body.email,
+    }).lean()) as UserModel;
 
     try {
-      await (User as IUser).validatePassword(request.body.password, user.password);
+      await (User as IUser).validatePassword(
+        request.body.password,
+        user.password
+      );
     } catch (e) {
       throw new Error('No such user/password combination');
     }
@@ -22,9 +25,7 @@ class AuthController {
     // send email confirmation email...
   }
 
-  async logout(request: Request, response: Response): Promise<void> {
-
-  }
+  async logout(request: Request, response: Response): Promise<void> {}
 }
 
 export const authController = new AuthController();

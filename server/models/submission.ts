@@ -4,7 +4,7 @@ import {
   StackModel,
   StudentModel,
   SubmissionFileModel,
-  UserModel
+  UserModel,
 } from './';
 
 const options: any = {
@@ -12,64 +12,66 @@ const options: any = {
   usePushEach: true,
 };
 
-const submissionSchema = new Schema({
-  belt: {
-    ref: 'Belt',
-    type: Schema.Types.ObjectId,
-  },
-  stack: {
-    ref: 'Stack',
-    required: true,
-    type: Schema.Types.ObjectId,
-  },
-  exam: {
-    ref: 'Exam',
-    required: true,
-    type: Schema.Types.ObjectId,
-  },
-  files: [
-    {
-      ref: 'SubmissionFile',
+const submissionSchema = new Schema(
+  {
+    belt: {
+      ref: 'Belt',
+      type: Schema.Types.ObjectId,
+    },
+    stack: {
+      ref: 'Stack',
       required: true,
       type: Schema.Types.ObjectId,
     },
-  ],
-  student: {
-    ref: 'Student',
-    type: Schema.Types.ObjectId,
-  },
-  instructor: {
-    ref: 'User',
-    type: Schema.Types.ObjectId,
-  },
-  integrity: {
-    default: true,
-    index: true,
-    required: true,
-    type: Boolean,
-  },
-  takenOn: {
-    default: Date.now,
-    required: true,
-    type: Date,
-  },
-  source: {
-    link: {
-      default: 'file',
+    exam: {
+      ref: 'Exam',
       required: true,
-      trim: true,
-      type: String,
+      type: Schema.Types.ObjectId,
     },
-    path: {
-      default: '',
+    files: [
+      {
+        ref: 'SubmissionFile',
+        required: true,
+        type: Schema.Types.ObjectId,
+      },
+    ],
+    student: {
+      ref: 'Student',
+      type: Schema.Types.ObjectId,
+    },
+    instructor: {
+      ref: 'User',
+      type: Schema.Types.ObjectId,
+    },
+    integrity: {
+      default: true,
+      index: true,
       required: true,
-      trim: true,
-      type: String,
+      type: Boolean,
     },
-    default: Object.create(null),
+    takenOn: {
+      default: Date.now,
+      required: true,
+      type: Date,
+    },
+    source: {
+      link: {
+        default: 'file',
+        required: true,
+        trim: true,
+        type: String,
+      },
+      path: {
+        default: '',
+        required: true,
+        trim: true,
+        type: String,
+      },
+      default: Object.create(null),
+    },
   },
-},
-options);
+  options
+);
 
 export interface SubmissionModel extends Document {
   exam: ExamModel;
@@ -80,11 +82,14 @@ export interface SubmissionModel extends Document {
   integrity: boolean;
   takenOn: Date;
   source: {
-    link: string,
-    path: string,
+    link: string;
+    path: string;
   };
   createdAt: Date;
   updatedAt: Date;
 }
 
-export const Submission = model<SubmissionModel>('Submission', submissionSchema);
+export const Submission = model<SubmissionModel>(
+  'Submission',
+  submissionSchema
+);

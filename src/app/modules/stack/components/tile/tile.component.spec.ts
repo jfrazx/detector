@@ -6,12 +6,13 @@ describe('StackTileComponent', () => {
   let component: StackTileComponent;
   let fixture: ComponentFixture<StackTileComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StackTileComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [StackTileComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StackTileComponent);

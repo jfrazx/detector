@@ -14,18 +14,16 @@ import { Stack } from '../../../../models';
 export class StackNewComponent {
   errors: string[] = [];
 
-  constructor(
-    private stackService: StackService,
-    private router: Router,
-  ) { }
+  constructor(private stackService: StackService, private router: Router) {}
 
   addStack(stack: Stack): void {
     console.log('stack event add trigger', stack);
 
-    const subscription: Subscription = this.stackService.create(stack)
+    const subscription: Subscription = this.stackService
+      .create(stack)
       .subscribe(
         () => this.router.navigateByUrl('stacks'),
-        (error) => {
+        error => {
           console.log(error.message);
         },
         () => {

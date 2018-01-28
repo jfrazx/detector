@@ -18,7 +18,8 @@ const app = express();
 app.set('port', port);
 
 // setup express middleware
-app.use(helmet())
+app
+  .use(helmet())
   .use(compress())
   .use(logger('dev'))
   .use(json())
@@ -27,5 +28,4 @@ app.use(helmet())
   .use(API, routes)
   .use(catchAll)
 
-
-  .listen(port, () => console.log(`Express server listening on port ${ port }`));
+  .listen(port, () => console.log(`Express server listening on port ${port}`));

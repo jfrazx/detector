@@ -3,7 +3,5 @@ import { Role } from '../models';
 
 @Injectable()
 export class RoleService {
-
-  constructor() { }
-
+  constructor() {}
 }

@@ -5,11 +5,7 @@ import { NgModule } from '@angular/core';
 
 // Components
 import { AuthComponent } from './auth.component';
-import {
-  HomeComponent,
-  LoginComponent,
-  RegisterComponent,
-} from './home/';
+import { HomeComponent, LoginComponent, RegisterComponent } from './home/';
 
 // Routing
 import { AuthRoutingModule } from './auth-routing.module';
@@ -27,14 +23,8 @@ import { SharedModule } from '../shared';
     LoginComponent,
     RegisterComponent,
   ],
-  imports: [
-    AuthRoutingModule,
-    CommonModule,
-    SharedModule,
-  ],
-  providers: [
-    AuthService,
-  ],
+  imports: [AuthRoutingModule, CommonModule, SharedModule],
+  providers: [AuthService],
   exports: [],
 })
 export class AuthModule {}

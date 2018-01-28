@@ -2,7 +2,10 @@ import { dice } from 'talisman/metrics/distance/dice';
 import { SubmissionFileModel } from '../models';
 import { basename, extname } from 'path';
 
-export async function compare(files: Content[], references: Content[]): Promise<Rated[]> {
+export async function compare(
+  files: Content[],
+  references: Content[]
+): Promise<Rated[]> {
   return await new CompareFiles(files, references).compare();
 }
 
@@ -16,7 +19,9 @@ class CompareFiles {
     const references = this.mapByExtension(this.references);
 
     for (const extension in files) {
-      if (!(extension in references)) { continue; }
+      if (!(extension in references)) {
+        continue;
+      }
 
       for (const source of files[extension]) {
         const rating = new FileRating(source, references[extension]);
@@ -33,7 +38,9 @@ class CompareFiles {
     for (const file of files) {
       const ext = extname(file.filename).toLowerCase();
 
-      if (!(ext in results)) { results[ext] = []; }
+      if (!(ext in results)) {
+        results[ext] = [];
+      }
 
       results[ext].push(file);
     }
@@ -105,7 +112,9 @@ class FileRating {
    * @memberof FileRating
    */
   private bestMatch(): Rateable {
-    return this.ratings.sort((a, b) => a.rating - b.rating)[this.ratings.length - 1];
+    return this.ratings.sort((a, b) => a.rating - b.rating)[
+      this.ratings.length - 1
+    ];
   }
 }
 

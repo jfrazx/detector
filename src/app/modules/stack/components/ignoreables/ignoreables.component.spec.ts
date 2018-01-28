@@ -6,12 +6,13 @@ describe('StackIgnoreablesComponent', () => {
   let component: StackIgnoreablesComponent;
   let fixture: ComponentFixture<StackIgnoreablesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StackIgnoreablesComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [StackIgnoreablesComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StackIgnoreablesComponent);

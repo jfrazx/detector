@@ -4,10 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SubmissionRoutingModule } from './submission-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SubmissionRoutingModule
-  ],
-  declarations: []
+  imports: [CommonModule, SubmissionRoutingModule],
+  declarations: [],
 })
-export class SubmissionModule { }
+export class SubmissionModule {}

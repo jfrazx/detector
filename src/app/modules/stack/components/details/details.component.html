@@ -16,13 +16,9 @@
     <button class='btn btn-danger' (click)='delete()'>Delete</button>
   </div>
   <div class="col-sm-12 col-lg-4 text-center">
-    <button class='btn btn-success btn-lg'>Exams</button>
+    <button class='btn btn-success btn-lg' clickLink='/stacks/{{stack_.id}}/exams'>Exams</button>
   </div>
   <div class="col-sm-12 col-lg-4">
-    <button
-      clickLink='/stacks/{{stack._id}}/edit'
-      class='float-right btn btn-warning'
-    >Edit</button>
+    <button clickLink='/stacks/{{stack._id}}/edit' class='float-right btn btn-warning'>Edit</button>
   </div>
 </div>
-

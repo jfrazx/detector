@@ -7,15 +7,12 @@ import { StackService } from '../../services';
 @Component({
   selector: 'app-stack-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+  styleUrls: ['./details.component.css'],
 })
 export class StackDetailsComponent {
-  @Input()
-  stack: Stack;
+  @Input() stack: Stack;
 
   constructor(private stackService: StackService) {}
 
-  delete(): void {
-
-  }
+  delete(): void {}
 }

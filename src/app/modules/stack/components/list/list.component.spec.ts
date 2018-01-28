@@ -6,12 +6,13 @@ describe('StackListComponent', () => {
   let component: StackListComponent;
   let fixture: ComponentFixture<StackListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StackListComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [StackListComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StackListComponent);

@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 
-export function errorHandler(error: Error, request: Request, response: Response, next: NextFunction): void {
+export function errorHandler(
+  error: Error,
+  request: Request,
+  response: Response,
+  next: NextFunction
+): void {
   if (error.message) {
     return response.status(500).json(error.message) as any;
   }
@@ -8,6 +13,11 @@ export function errorHandler(error: Error, request: Request, response: Response,
   next();
 }
 
-export function basicErrorHandler(error: Error, request: Request, response: Response, next: NextFunction): void {
+export function basicErrorHandler(
+  error: Error,
+  request: Request,
+  response: Response,
+  next: NextFunction
+): void {
   response.status(501).json('An error occured');
 }

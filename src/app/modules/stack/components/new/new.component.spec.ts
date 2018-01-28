@@ -6,12 +6,13 @@ describe('StackNewComponent', () => {
   let component: StackNewComponent;
   let fixture: ComponentFixture<StackNewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StackNewComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [StackNewComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StackNewComponent);

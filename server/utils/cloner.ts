@@ -22,15 +22,12 @@ export async function clone(
     max_file_size,
   }: WalkOptions
 ): Promise<FileData[]> {
-    const repo = await cloner(link, source);
+  const repo = await cloner(link, source);
 
-    return await read(
-            directory,
-            {
-              ignore_directories,
-              ignore_files,
-              min_file_size,
-              max_file_size,
-            }
-          );
+  return await read(directory, {
+    ignore_directories,
+    ignore_files,
+    min_file_size,
+    max_file_size,
+  });
 }

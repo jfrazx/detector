@@ -10,8 +10,8 @@ export class Submission {
   student: Student;
   instructor: User;
   source: {
-    link: string,
-    path: string,
+    link: string;
+    path: string;
   };
   takenOn: Date;
   createdAt: Date;

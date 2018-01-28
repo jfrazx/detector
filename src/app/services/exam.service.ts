@@ -3,7 +3,5 @@ import { Exam } from '../models';
 
 @Injectable()
 export class ExamService {
-
-  constructor() { }
-
+  constructor() {}
 }

@@ -8,4 +8,3 @@ router
   .post('/login', wrapper(authController.login))
   .post('/register', wrapper(authController.register))
   .post('/logout', wrapper(authController.logout));
-

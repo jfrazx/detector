@@ -4,11 +4,11 @@
   color: #eee;
   max-height: 220px;
   min-width: 220px;
-  background-color: #607D8B;
+  background-color: #607d8b;
   border-radius: 2px;
 }
 .tile:hover {
-  background-color: #EEE;
+  background-color: #eee;
   cursor: pointer;
   color: #607d8b;
 }
@@ -21,7 +21,8 @@
 @media (max-width: 600px) {
   .tile {
     font-size: 10px;
-    max-height: 75px; }
+    max-height: 75px;
+  }
 }
 @media (max-width: 1024px) {
   .grid {

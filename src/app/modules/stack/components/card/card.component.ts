@@ -8,19 +8,15 @@ import { Stack } from '../../../../models';
   styleUrls: ['./card.component.css']
 })
 export class StackCardComponent implements OnInit {
-  @Input()
-  stack: Stack;
+  @Input() stack: Stack;
 
-  @Input()
-  selected = false;
+  @Input() selected = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   private prevent(event: Event): void {
     event.stopPropagation();
   }
-
 }

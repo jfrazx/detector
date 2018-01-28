@@ -4,9 +4,12 @@ import { build, baseline, flatten } from '../utils';
 import { CRUD } from '../interfaces';
 import { API } from '../config';
 
-
 class SubmissionController implements CRUD {
-  async index(request: Request, response: Response, next: NextFunction): Promise<void> {
+  async index(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
     response.json(
       await Submission.find({})
         .populate('student')
@@ -16,7 +19,11 @@ class SubmissionController implements CRUD {
     );
   }
 
-  async show(request: Request, response: Response, next: NextFunction): Promise<void> {
+  async show(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
     response.json(
       await Submission.findById(request.params.submission_id)
         .populate('exam')
@@ -27,9 +34,7 @@ class SubmissionController implements CRUD {
     );
   }
 
-  async createFromFile(request: Request, response: Response): Promise<void> {
-
-  }
+  async createFromFile(request: Request, response: Response): Promise<void> {}
 
   async createFromGithub(request: Request, response: Response): Promise<void> {
     const submission = new Submission(request.body);
@@ -44,23 +49,36 @@ class SubmissionController implements CRUD {
     response.json(submission);
   }
 
-  async create(request: Request, response: Response, next: NextFunction): Promise<void> {
+  async create(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
+    response.json(await Submission.create(request.body));
+  }
+
+  async update(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
     response.json(
-      await Submission.create(request.body)
+      await Submission.findByIdAndUpdate(request.params.submission_id, {
+        $set: request.body,
+      })
+        .lean()
+        .exec()
     );
   }
 
-  async update(request: Request, response: Response, next: NextFunction): Promise<void> {
-    response.json(
-      await Submission
-              .findByIdAndUpdate(request.params.submission_id, { $set: request.body })
-              .lean()
-              .exec()
+  async destroy(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
+    const submission = await Submission.findByIdAndRemove(
+      request.params.submission_id
     );
-  }
-
-  async destroy(request: Request, response: Response, next: NextFunction): Promise<void> {
-    const submission = await Submission.findByIdAndRemove(request.params.submission_id);
     const files = await SubmissionFile.remove({ submission: submission._id });
 
     response.json(submission);

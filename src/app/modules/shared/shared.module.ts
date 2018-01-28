@@ -3,14 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 // Components
-import {
-  FooterComponent,
-  HeaderComponent,
-} from './components';
+import { FooterComponent, HeaderComponent } from './components';
 
-import {
-  EachSlicePipe,
-} from './pipes';
+import { EachSlicePipe } from './pipes';
 import { ClickLinkDirective } from './directives/click-link.directive';
 
 @NgModule({
@@ -20,9 +15,7 @@ import { ClickLinkDirective } from './directives/click-link.directive';
     HeaderComponent,
     ClickLinkDirective,
   ],
-  imports: [
-    NgbModule,
-  ],
+  imports: [NgbModule],
   providers: [],
   exports: [
     NgbModule,
@@ -30,6 +23,6 @@ import { ClickLinkDirective } from './directives/click-link.directive';
     FooterComponent,
     HeaderComponent,
     ClickLinkDirective,
-  ]
+  ],
 })
 export class SharedModule {}

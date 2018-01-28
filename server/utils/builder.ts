@@ -10,7 +10,10 @@ import {
   SubmissionModel,
 } from '../models';
 
-export async function build(submission: SubmissionModel, stack: StackModel): Promise<SubmissionFileModel[]> {
+export async function build(
+  submission: SubmissionModel,
+  stack: StackModel
+): Promise<SubmissionFileModel[]> {
   return await FileBuilder.for(submission, stack).build();
 }
 
@@ -20,28 +23,27 @@ export abstract class FileBuilder {
 
   constructor(
     protected submission: SubmissionModel,
-    protected stack: StackModel,
+    protected stack: StackModel
   ) {
     this.source = join(STORAGE, this.submission._id);
     this.path = join(this.source, this.submission.source.path || '');
   }
 
-  static for<T extends FileBuilder>(submission: SubmissionModel, stack: StackModel): T {
+  static for<T extends FileBuilder>(
+    submission: SubmissionModel,
+    stack: StackModel
+  ): T {
     const { link } = submission.source;
 
     try {
-      return new TYPES[extname(link).toLowerCase()](submission, stack) as T;
+      return new TYPES[(extname(link).toLowerCase())](submission, stack) as T;
     } catch (e) {
       return new FileBuilderGit(submission, stack) as T;
     }
   }
 
   async build(): Promise<SubmissionFileModel[]> {
-    return await this.insert(
-        await this.builder(
-          await this.prepare()
-        )
-      );
+    return await this.insert(await this.builder(await this.prepare()));
   }
 
   abstract async prepare(): Promise<FileData[]>;
@@ -50,28 +52,30 @@ export abstract class FileBuilder {
     const results: Array<ISubmissionFile> = [];
 
     for (const { path: file, size } of files) {
-      results.push(
-        {
-          submission: this.submission,
-          contents: await this.readContents(file),
-          filename: basename(file),
-          extension: extname(file),
-          path: relative(this.path, file),
-          size,
-        }
-      );
+      results.push({
+        submission: this.submission,
+        contents: await this.readContents(file),
+        filename: basename(file),
+        extension: extname(file),
+        path: relative(this.path, file),
+        size,
+      });
     }
     return results;
   }
 
-  protected async insert(files: ISubmissionFile[]): Promise<SubmissionFileModel[]> {
+  protected async insert(
+    files: ISubmissionFile[]
+  ): Promise<SubmissionFileModel[]> {
     return await SubmissionFile.insertMany(files);
   }
 
   protected readContents(file: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       readFile(file, 'utf-8', (error, contents) => {
-        if (error) { return reject(error); }
+        if (error) {
+          return reject(error);
+        }
 
         resolve(contents);
       });
@@ -82,11 +86,11 @@ export abstract class FileBuilder {
 class FileBuilderGit extends FileBuilder {
   async prepare(): Promise<FileData[]> {
     return await clone(
-            this.submission.source.link,
-            this.source,
-            this.path,
-            this.stack
-          );
+      this.submission.source.link,
+      this.source,
+      this.path,
+      this.stack
+    );
   }
 }
 
@@ -98,9 +102,7 @@ class FileBuilderGit extends FileBuilder {
  */
 class FileBuilderZip extends FileBuilder {
   async prepare(): Promise<FileData[]> {
-    return new Promise<FileData[]>(async (resolve, reject) => {
-
-    });
+    return new Promise<FileData[]>(async (resolve, reject) => {});
   }
 }
 /**
@@ -111,9 +113,7 @@ class FileBuilderZip extends FileBuilder {
  */
 class FileBuilderRar extends FileBuilder {
   async prepare(): Promise<FileData[]> {
-    return new Promise<FileData[]>(async (resolve, reject) => {
-
-    });
+    return new Promise<FileData[]>(async (resolve, reject) => {});
   }
 }
 

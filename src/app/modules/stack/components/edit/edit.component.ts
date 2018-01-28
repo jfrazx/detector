@@ -9,7 +9,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'app-stack-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
 })
 export class StackEditComponent implements OnInit {
   stack: Stack;
@@ -17,12 +17,10 @@ export class StackEditComponent implements OnInit {
   constructor(
     private stackService: StackService,
     private router: Router,
-    private route: ActivatedRoute,
-  ) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    console.log(this.stack);
     this.stack = this.route.snapshot.data.stack as Stack;
-    console.log(this.stack);
   }
 }

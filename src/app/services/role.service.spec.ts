@@ -5,11 +5,14 @@ import { RoleService } from './role.service';
 describe('RoleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RoleService]
+      providers: [RoleService],
     });
   });
 
-  it('should be created', inject([RoleService], (service: RoleService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([RoleService], (service: RoleService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

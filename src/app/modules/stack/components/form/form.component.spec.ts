@@ -6,12 +6,13 @@ describe('StackFormComponent', () => {
   let component: StackFormComponent;
   let fixture: ComponentFixture<StackFormComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StackFormComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [StackFormComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StackFormComponent);

@@ -6,12 +6,13 @@ describe('StackEditComponent', () => {
   let component: StackEditComponent;
   let fixture: ComponentFixture<StackEditComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StackEditComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [StackEditComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StackEditComponent);

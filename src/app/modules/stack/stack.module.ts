@@ -11,7 +11,7 @@ import { SharedModule } from '../shared';
 import { StackRoutingModule } from './stack-routing.module';
 
 // services
-import { StackService } from './services/stack.service';
+import { StackService } from './services';
 
 // components
 import {
@@ -27,10 +27,7 @@ import {
 } from './components';
 
 // resolvers
-import {
-  StackResolve,
-} from './resolvers';
-
+import { StackResolve } from './resolvers';
 
 @NgModule({
   declarations: [
@@ -53,9 +50,6 @@ import {
     ReactiveFormsModule,
     AngularFontAwesomeModule,
   ],
-  providers: [
-    StackService,
-    StackResolve,
-  ],
+  providers: [StackService, StackResolve],
 })
-export class StackModule { }
+export class StackModule {}

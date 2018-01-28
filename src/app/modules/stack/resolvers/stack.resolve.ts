@@ -5,7 +5,6 @@ import { StackService } from '../services';
 
 import { Stack } from '../../../models';
 
-
 @Injectable()
 export class StackResolve implements Resolve<Stack> {
   constructor(private stackService: StackService) {}

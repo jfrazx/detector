@@ -5,11 +5,14 @@ import { StackService } from './stack.service';
 describe('StackService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [StackService]
+      providers: [StackService],
     });
   });
 
-  it('should be created', inject([StackService], (service: StackService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([StackService], (service: StackService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

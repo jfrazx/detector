@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "tsc": "./node_modules/.bin/tsc",
-    "onchange": "./node_modules/.bin/onchange '**/*.ts' -e 'src/**' -w -d 1000 -i -- npm run tsc",
+    "onchange":
+      "./node_modules/.bin/onchange '**/*.ts' -e 'src/**' -w -d 1000 -i -- npm run tsc",
     "foreman": "./node_modules/.bin/nf",
     "serve": "nodemon ./dist/server.js"
   },

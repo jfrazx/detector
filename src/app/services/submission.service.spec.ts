@@ -5,11 +5,14 @@ import { SubmissionService } from './submission.service';
 describe('SubmissionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SubmissionService]
+      providers: [SubmissionService],
     });
   });
 
-  it('should be created', inject([SubmissionService], (service: SubmissionService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([SubmissionService], (service: SubmissionService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

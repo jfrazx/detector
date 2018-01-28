@@ -5,11 +5,14 @@ import { BeltService } from './belt.service';
 describe('BeltService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BeltService]
+      providers: [BeltService],
     });
   });
 
-  it('should be created', inject([BeltService], (service: BeltService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([BeltService], (service: BeltService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

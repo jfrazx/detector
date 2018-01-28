@@ -26,7 +26,7 @@ const ratingSchema = new Schema({
     rating: {
       required: true,
       type: Number,
-    }
+    },
   },
   ratings: [
     {
@@ -43,8 +43,8 @@ const ratingSchema = new Schema({
       rating: {
         required: true,
         type: Number,
-      }
-    }
+      },
+    },
   ],
 });
 

@@ -3,7 +3,5 @@ import { SubmissionFile } from '../models';
 
 @Injectable()
 export class SubmissionFileService {
-
-  constructor() { }
-
+  constructor() {}
 }

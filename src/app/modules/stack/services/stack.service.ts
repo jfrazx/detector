@@ -10,19 +10,19 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class StackService {
-  private base = `${ API }/stacks/`;
+  private base = `${API}/stacks/`;
   private stacks: Stack[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   index(): Observable<Stack[]> {
     if (this.stacks.length) {
       return Observable.of(this.stacks);
     }
 
-    return this.http.get<Stack[]>(this.base)
-            .do(stacks => this.stacks = stacks);
-
+    return this.http
+      .get<Stack[]>(this.base)
+      .do(stacks => (this.stacks = stacks));
   }
 
   show(id: string): Observable<Stack> {
@@ -30,44 +30,39 @@ export class StackService {
       return Observable.of(this.find(id));
     }
 
-    return this.http.get<Stack>(this.base + id)
-            .do(stack => this.stacks.push(stack));
+    return this.http
+      .get<Stack>(this.base + id)
+      .do(stack => this.stacks.push(stack));
   }
 
   create(stack: Stack): Observable<Stack> {
-    return this.http.post<Stack>(this.base, stack)
-            .do(created => {
-              console.log('this is the created stack', created);
-              this.stacks.push(created);
-            });
+    return this.http
+      .post<Stack>(this.base, stack)
+      .do(created => this.stacks.push(created));
   }
 
   update(stack: Stack): Observable<Stack> {
-    return this.http.put<Stack>(this.base + stack._id, stack)
-            .do(updated => this.replace(updated));
+    return this.http
+      .put<Stack>(this.base + stack._id, stack)
+      .do(updated => this.replace(updated));
   }
 
   destroy(id: string): Observable<Stack> {
-    return this.http.delete<Stack>(this.base + id)
-            .do(stack => this.remove(stack));
+    return this.http
+      .delete<Stack>(this.base + id)
+      .do(stack => this.remove(stack._id));
   }
 
-  private remove(stack: Stack): void {
-    if (this.includes(stack._id)) {
-      this.stacks.splice(
-        this.stacks.indexOf(
-          this.find(stack._id), 1
-        )
-      );
+  private remove(id: string, ...stacks: Stack[]): void {
+    const stack = this.find(id);
+
+    if (stack) {
+      this.stacks.splice(this.stacks.indexOf(stack), 1, ...stacks);
     }
   }
 
   private replace(stack: Stack): void {
-    if (this.includes(stack._id)) {
-      this.stacks.splice(
-        this.stacks.indexOf(
-          this.find(stack._id)), 1, stack);
-    }
+    this.remove(stack._id, stack);
   }
 
   private includes(id: string): boolean {
