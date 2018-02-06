@@ -1,3 +1,5 @@
 <div class='tile' (click)='onClick()'>
+  <ng-content select='app-x-remove'></ng-content>
+
   {{ text | pregex:toggle }}
 </div>

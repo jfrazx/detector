@@ -1,10 +1,7 @@
 <li class="list-group-item" [class.selected]='selected'>
-  <h3 class='float-right'>
-    <small class="text-uppercase">{{ stack | json }}</small>
-  </h3>
-  <h2 class='h3'>
+  <h2 class='h1 text-center'>
     {{ stack.name }}
   </h2>
-  <app-stack-details (click)='prevent($event)' *ngIf='selected' [stack]='stack'>
-  </app-stack-details>
 </li>
+<app-stack-details (click)='prevent($event)' *ngIf='selected' [stack]='stack'>
+</app-stack-details>

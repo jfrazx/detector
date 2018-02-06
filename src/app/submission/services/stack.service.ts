@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/observable/throw';
@@ -31,9 +32,9 @@ export class StackService {
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 
-  destroyStack(id: string): Observable<Stack> {
+  removeStack(stack: Stack): Observable<Stack> {
     return this.http
-      .delete<Stack>(`${this.base}/${id}`)
+      .delete<Stack>(`${this.base}/${stack._id}`)
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 }

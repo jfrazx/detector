@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class ClickLinkDirective {
   @Input() clickLink: string;
 
-  constructor(private el: ElementRef, private router: Router) {}
+  constructor(private router: Router) {}
 
   @HostListener('click')
   onClick(): void {

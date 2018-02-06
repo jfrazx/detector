@@ -8,7 +8,7 @@ class StackController implements CRUD {
     response: Response,
     next: NextFunction
   ): Promise<void> {
-    response.json(await Stack.find({}));
+    response.json(await Stack.find({}).sort('name'));
   }
   async show(
     request: Request,

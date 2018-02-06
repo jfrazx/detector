@@ -9,8 +9,6 @@ export class PregexPipe implements PipeTransform {
       return value;
     }
 
-    console.log('presenting values', value);
-
     return presentable
       ? value.replace(/\\+/g, '')
       : new RegExp(value).toString();
