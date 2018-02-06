@@ -1,9 +1,18 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
-export interface SubmissionState {}
+import * as fromBelts from './belts.reducer';
+import * as fromStacks from './stacks.reducer';
 
-export const reducers: ActionReducerMap<SubmissionState> = {};
+export interface SubmissionState {
+  belts: fromBelts.BeltState;
+  stacks: fromStacks.StackState;
+}
 
-export const getBeltState = createFeatureSelector<SubmissionState>(
+export const reducers: ActionReducerMap<SubmissionState> = {
+  belts: fromBelts.reducer,
+  stacks: fromStacks.reducer,
+};
+
+export const getSubmissionsState = createFeatureSelector<SubmissionState>(
   'submissions'
 );

@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SubmissionRoutingModule } from './submission-routing.module';
+
 import * as fromComponents from './components';
+import * as fromContainers from './containers';
 
 import * as fromServices from './services';
 
@@ -14,12 +16,12 @@ import { SharedModule } from '../shared';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     SharedModule,
+    ReactiveFormsModule,
     SubmissionRoutingModule,
     AngularFontAwesomeModule,
   ],
-  declarations: [...fromComponents.components],
+  declarations: [...fromComponents.components, ...fromContainers.containers],
   providers: [...fromServices.services],
 })
 export class SubmissionModule {}

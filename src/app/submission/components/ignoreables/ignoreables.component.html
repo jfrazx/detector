@@ -1,6 +1,7 @@
 <div class='row' *ngIf='ignoreables.length; else empty'>
   <div class='col-sm-6 col-md-3 col-lg-4 tile-container' *ngFor='let ignored of ignoreables | eachSlice:3'>
     <app-stack-tile *ngFor='let ignore of ignored' [text]='ignore'>
+      <app-x-remove displayOnHover></app-x-remove>
     </app-stack-tile>
   </div>
 </div>

@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
-import 'rxjs/add/operator/throw';
+import 'rxjs/add/observable/throw';
 
+import { Login, Register } from '../models';
 import { User } from '../../facility';
 
 import { API } from '../../config';
@@ -15,13 +16,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(user: User): Observable<void> {
+  register(user: Register): Observable<void> {
     return this.http
       .post(`${this.base}/register`, user)
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 
-  login(user: User): Observable<User> {
+  login(user: Login): Observable<User> {
     return this.http
       .post<User>(`${this.base}/login`, user)
       .pipe(catchError((error: any) => Observable.throw(error.json())));

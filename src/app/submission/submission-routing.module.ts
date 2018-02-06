@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // import { StackResolve } from './resolvers';
 
 import * as fromComponents from './components';
+import * as fromContainers from './containers';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        component: fromComponents.StackListComponent,
+        component: fromContainers.StackListComponent,
       },
       {
         path: ':id/edit',
