@@ -8,7 +8,9 @@ export interface StackState extends EntityState<Stack> {
   loaded: boolean;
 }
 
-export const adapter: EntityAdapter<Stack> = createEntityAdapter<Stack>();
+export const adapter: EntityAdapter<Stack> = createEntityAdapter<Stack>({
+  selectId: stack => stack._id,
+});
 
 export const initialState: StackState = adapter.getInitialState({
   loading: false,
@@ -36,6 +38,16 @@ export function reducer(state = initialState, action: fromStacks.StackActions) {
         loading: false,
         loaded: true,
       };
+
+    case fromStacks.StackActionTypes.CREATE_STACK_SUCCESS:
+      return adapter.addOne(action.payload, state);
+
+    case fromStacks.StackActionTypes.UPDATE_STACK_SUCCESS:
+      return adapter.updateOne(action.payload, state);
+
+    case fromStacks.StackActionTypes.REMOVE_STACK_SUCCESS:
+      return adapter.removeOne(action.payload._id, state);
+
     default:
       return state;
   }

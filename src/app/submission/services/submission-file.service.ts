@@ -14,7 +14,7 @@ export class SubmissionFileService {
 
   constructor(private http: HttpClient) {}
 
-  getStacks(): Observable<SubmissionFile[]> {
+  getSubmissionFiles(): Observable<SubmissionFile[]> {
     return this.http
       .get<SubmissionFile[]>(this.base)
       .pipe(catchError((error: any) => Observable.throw(error.json())));

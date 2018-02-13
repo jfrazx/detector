@@ -8,8 +8,9 @@ export interface BeltState extends EntityState<Belt> {
   loaded: boolean;
 }
 
-export const adapter: EntityAdapter<Belt> = createEntityAdapter<Belt>();
-
+export const adapter: EntityAdapter<Belt> = createEntityAdapter<Belt>({
+  selectId: belt => belt._id,
+});
 export const initialState: BeltState = adapter.getInitialState({
   loading: false,
   loaded: false,

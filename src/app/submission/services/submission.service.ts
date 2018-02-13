@@ -14,7 +14,7 @@ export class SubmissionService {
 
   constructor(private http: HttpClient) {}
 
-  getStacks(): Observable<Submission[]> {
+  getSubmissions(): Observable<Submission[]> {
     return this.http
       .get<Submission[]>(this.base)
       .pipe(catchError((error: any) => Observable.throw(error.json())));

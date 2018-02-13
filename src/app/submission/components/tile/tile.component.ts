@@ -5,13 +5,9 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.css'],
 })
-export class StackTileComponent implements OnInit {
+export class StackTileComponent {
   @Input() text: String;
   toggle = true;
-
-  constructor() {}
-
-  ngOnInit() {}
 
   onClick(): void {
     this.toggle = !this.toggle;

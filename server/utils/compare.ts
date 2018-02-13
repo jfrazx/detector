@@ -1,6 +1,7 @@
 import { dice } from 'talisman/metrics/distance/dice';
 import { SubmissionFileModel } from '../models';
 import { basename, extname } from 'path';
+import { inObject } from './helpers';
 
 export async function compare(
   files: Content[],
@@ -19,7 +20,7 @@ class CompareFiles {
     const references = this.mapByExtension(this.references);
 
     for (const extension in files) {
-      if (!(extension in references)) {
+      if (!inObject(extension, references)) {
         continue;
       }
 

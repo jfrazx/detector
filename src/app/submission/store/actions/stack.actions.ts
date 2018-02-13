@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
 import { Stack } from '../../models';
 
@@ -51,7 +52,7 @@ export class StackUpdateFail implements Action {
 export class StackUpdateSuccess implements Action {
   readonly type = StackActionTypes.UPDATE_STACK_SUCCESS;
 
-  constructor(public payload: Stack) {}
+  constructor(public payload: Update<Stack>) {}
 }
 
 export class StackCreate implements Action {

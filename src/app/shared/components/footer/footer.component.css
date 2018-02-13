@@ -6,4 +6,10 @@ footer {
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+.pre-footer {
+  height: 50px;
+  margin-top: 20px;
 }

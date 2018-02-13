@@ -1,7 +1,8 @@
 <li class="list-group-item" [class.selected]='selected'>
+
   <h2 class='h1 text-center'>
     {{ stack.name }}
   </h2>
 </li>
-<app-stack-details (click)='prevent($event)' *ngIf='selected' [stack]='stack'>
+<app-stack-details (deleteStack)='onDelete($event)' (click)='prevent($event)' *ngIf='selected' [stack]='stack'>
 </app-stack-details>

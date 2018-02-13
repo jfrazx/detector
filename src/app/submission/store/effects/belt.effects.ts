@@ -4,10 +4,11 @@ import { Effect, Actions } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
-import * as beltActions from '../actions/Belt.actions';
+import * as beltActions from '../actions/belt.actions';
 import * as fromServices from '../../services';
 import { BeltActions } from '../actions';
 
+@Injectable()
 export class BeltEffects {
   @Effect()
   loadBelts$ = this.actions$

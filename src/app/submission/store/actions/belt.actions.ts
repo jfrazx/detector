@@ -3,21 +3,21 @@ import { Action } from '@ngrx/store';
 import { Belt } from '../../models';
 
 export enum BeltActionTypes {
-  LOAD_BELTS = '[Belt] Load Belts',
-  LOAD_BELTS_FAIL = '[Belt] Load Belts Fail',
-  LOAD_BELTS_SUCCESS = '[Belt] Load Belts Success',
+  LOAD_BELTS = '[Submissions] Load Belts',
+  LOAD_BELTS_FAIL = '[Submissions] Load Belts Fail',
+  LOAD_BELTS_SUCCESS = '[Submissions] Load Belts Success',
 
-  UPDATE_BELT = '[Belt] Update Belt',
-  UPDATE_BELT_FAIL = '[Belt] Update Belt Fail',
-  UPDATE_BELT_SUCCESS = '[Belt] Update Belt Success',
+  UPDATE_BELT = '[Submissions] Update Belt',
+  UPDATE_BELT_FAIL = '[Submissions] Update Belt Fail',
+  UPDATE_BELT_SUCCESS = '[Submissions] Update Belt Success',
 
-  REMOVE_BELT = '[Belt] Remove Belt',
-  REMOVE_BELT_FAIL = '[Belt] Remove Belt Fail',
-  REMOVE_BELT_SUCCESS = '[Belt] Remove Belt Success',
+  REMOVE_BELT = '[Submissions] Remove Belt',
+  REMOVE_BELT_FAIL = '[Submissions] Remove Belt Fail',
+  REMOVE_BELT_SUCCESS = '[Submissions] Remove Belt Success',
 
-  CREATE_BELT = '[Belt] Create Belt',
-  CREATE_BELT_FAIL = '[Belt] Create Belt Fail',
-  CREATE_BELT_SUCCESS = '[Belt] Create Belt Success',
+  CREATE_BELT = '[Submissions] Create Belt',
+  CREATE_BELT_FAIL = '[Submissions] Create Belt Fail',
+  CREATE_BELT_SUCCESS = '[Submissions] Create Belt Success',
 }
 
 export class LoadBelts implements Action {

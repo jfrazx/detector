@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Stack } from '../../models';
 
@@ -12,7 +12,13 @@ export class StackCardComponent {
 
   @Input() selected = false;
 
+  @Output() remove: EventEmitter<Stack> = new EventEmitter<Stack>();
+
   private prevent(event: Event): void {
     event.stopPropagation();
+  }
+
+  onDelete(event: Stack): void {
+    this.remove.emit(event);
   }
 }

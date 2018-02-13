@@ -25,3 +25,15 @@ export const getStackLoaded = createSelector(
   getStackState,
   fromStacks.getStackLoaded
 );
+
+export const getStacks = createSelector(getStackEntities, entities =>
+  Object.keys(entities).map(id => entities[id])
+);
+
+export const getSelectedStack = createSelector(
+  getStackEntities,
+  fromRoot.getRouterState,
+  (entities, router): Stack => {
+    return router.state && entities[router.state.params.stackId];
+  }
+);
