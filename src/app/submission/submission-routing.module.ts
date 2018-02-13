@@ -18,17 +18,22 @@ const routes: Routes = [
       },
       {
         path: 'new',
-        component: fromComponents.StackNewComponent,
+        component: fromContainers.StackItemComponent,
       },
       {
         path: 'list',
         component: fromContainers.StackListComponent,
       },
       {
-        path: ':id/edit',
-        component: fromComponents.StackEditComponent,
+        path: ':stackId/edit',
+        component: fromContainers.StackItemComponent,
       },
     ],
+  },
+
+  {
+    path: 'belts',
+    component: fromContainers.BeltListComponent,
   },
 ];
 

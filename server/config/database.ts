@@ -8,6 +8,7 @@ import { inspect } from 'util';
 import { ENV } from './env';
 
 const config: DbConfig = Object.assign(
+  Object.create(null),
   configuration.database[ENV],
   configuration.database.default
 );

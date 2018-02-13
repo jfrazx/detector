@@ -6,6 +6,7 @@
   min-width: 220px;
   background-color: #607d8b;
   border-radius: 2px;
+  margin: 1px;
 }
 .tile:hover {
   background-color: #eee;

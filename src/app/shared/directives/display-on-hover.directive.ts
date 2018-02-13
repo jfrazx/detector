@@ -12,7 +12,7 @@ import {
   selector: '[displayOnHover]',
 })
 export class DisplayOnHoverDirective implements OnInit, AfterContentInit {
-  @HostBinding('hidden') hidden: boolean = false;
+  @HostBinding('hidden') hidden = false;
 
   private events = ['mouseenter', 'mouseleave'];
 

@@ -28,6 +28,8 @@ const stackSchema = new Schema(
   options
 );
 
+stackSchema.set('toObject', { getters: true });
+
 export interface StackModel extends Document {
   ignore_directories: Array<string>;
   ignore_files: Array<string>;

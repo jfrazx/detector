@@ -35,3 +35,16 @@ export function flatten<T>(arrays: (T | T[])[], results: T[] = []): T[] {
 
   return results;
 }
+
+/**
+ *
+ *
+ * @export
+ * @template T
+ * @param {string} field
+ * @param {T} object
+ * @returns {boolean}
+ */
+export function inObject<T extends object>(field: string, object: T): boolean {
+  return field in object;
+}

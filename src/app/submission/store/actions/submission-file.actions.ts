@@ -1,3 +1,4 @@
+import { Update } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 
 import { SubmissionFile } from '../../models';
@@ -51,7 +52,7 @@ export class SubmissionFileUpdateFail implements Action {
 export class SubmissionFileUpdateSuccess implements Action {
   readonly type = SubmissionFileActionTypes.UPDATE_SUBMISSION_FILE_SUCCESS;
 
-  constructor(public payload: SubmissionFile) {}
+  constructor(public payload: Update<SubmissionFile>) {}
 }
 
 export class SubmissionFileCreate implements Action {

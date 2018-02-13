@@ -10,3 +10,7 @@
 input.ng-invalid.ng-touched:focus {
   border: 2px solid orange;
 }
+
+form {
+  margin-bottom: 20px;
+}

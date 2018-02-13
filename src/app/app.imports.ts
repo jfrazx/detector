@@ -1,10 +1,16 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer,
+} from '@ngrx/router-store';
+
+import { reducers, effects } from './store';
 
 // Modules
 import { AuthModule } from './auth';
@@ -34,7 +40,7 @@ export const imports: any[] = [
   SharedModule,
   SubmissionModule,
   environment.production ? [] : StoreDevtoolsModule.instrument(),
-  StoreModule.forRoot({}, { metaReducers }),
-  EffectsModule.forRoot([]),
+  StoreModule.forRoot(reducers, { metaReducers }),
+  EffectsModule.forRoot(effects),
   NgbModule.forRoot(),
 ];

@@ -5,7 +5,7 @@
       <div class="margin-20">
         <h4>Stackables</h4>
       </div>
-      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)">
+      <form [formGroup]="form" novalidate>
         <div class="form-group" class="margin-20">
           <label class='control-label'>Name</label>
           <input type="text" class="form-control" formControlName="name">
@@ -84,8 +84,12 @@
         </div>
 
         <div class="margin-20">
-          <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid">
+          <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)='createStack(form)' *ngIf='!exists'>
             Submit
+          </button>
+
+          <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)='updateForm(form)' *ngIf='exists'>
+            Update
           </button>
         </div>
         <div class="clearfix"></div>

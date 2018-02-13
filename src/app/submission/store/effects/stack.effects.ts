@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
+import { Update } from '@ngrx/entity';
 
 import { of } from 'rxjs/observable/of';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
 import * as stackActions from '../actions/stack.actions';
 import * as fromServices from '../../services';
-import { StackActions } from '../actions';
 
+import { Stack } from '../../models';
+
+@Injectable()
 export class StackEffects {
   @Effect()
   loadStacks$ = this.actions$
@@ -17,7 +20,7 @@ export class StackEffects {
         this.stackService
           .getStacks()
           .pipe(
-            map(pizzas => new stackActions.LoadStacksSuccess(pizzas)),
+            map(exams => new stackActions.LoadStacksSuccess(exams)),
             catchError(error => of(new stackActions.LoadStacksFail(error)))
           )
       )
@@ -50,7 +53,10 @@ export class StackEffects {
           .updateStack(stack)
           .pipe(
             map(
-              updatedStack => new stackActions.StackUpdateSuccess(updatedStack)
+              updatedStack =>
+                new stackActions.StackUpdateSuccess(
+                  (updatedStack as any) as Update<Stack>
+                )
             ),
             catchError(error => of(new stackActions.StackUpdateFail(error)))
           )

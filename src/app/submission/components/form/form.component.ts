@@ -1,5 +1,13 @@
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Validators, FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 
@@ -13,12 +21,17 @@ const EMPTY_MESSAGE =
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class StackFormComponent implements OnInit {
-  @Input() stack: Stack = new Stack();
+export class StackFormComponent implements OnInit, OnChanges {
+  @Input() passedStack: Stack;
 
-  @Output() stackEvent = new EventEmitter<IStack>();
+  stack: Stack = new Stack();
+
+  @Output() create = new EventEmitter<IStack>();
+  @Output() update = new EventEmitter<Stack>();
 
   form: FormGroup;
+
+  exists = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -30,6 +43,13 @@ export class StackFormComponent implements OnInit {
       ),
       ignore_files: this.fb.array(this.initIgnore(this.stack.ignore_files)),
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.passedStack) {
+      this.exists = true;
+      this.stack = this.passedStack;
+    }
   }
 
   private addField(field: string): void {
@@ -60,20 +80,26 @@ export class StackFormComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm): void {
-    if (form.invalid) {
-      return;
-    }
+  createStack(form: NgForm): void {
+    if (form.valid) {
+      const stack: IStack = this.stackFromForm(form);
 
-    const stack: IStack = this.stackFromForm(form);
-
-    if (this.emptyIgnores(stack)) {
-      if (!confirm(EMPTY_MESSAGE)) {
-        return;
+      if (this.emptyIgnores(stack)) {
+        if (!confirm(EMPTY_MESSAGE)) {
+          return;
+        }
       }
-    }
 
-    this.stackEvent.emit(stack);
+      this.create.emit(stack);
+    }
+  }
+
+  updateStack(form: NgForm): void {
+    if (form.valid) {
+      const stack: Stack = this.stackFromForm(form) as Stack;
+
+      this.update.emit(stack);
+    }
   }
 
   private emptyIgnores(stack: IStack): boolean {

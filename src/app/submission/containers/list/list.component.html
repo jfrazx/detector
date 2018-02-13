@@ -1,6 +1,0 @@
-<section>
-  <ol class="list-group">
-    <app-stack-card *ngFor='let stack of stacks$ | async' (click)='selectStack(stack)' [stack]='stack' [selected]='selectedStack === stack'>
-    </app-stack-card>
-  </ol>
-</section>
