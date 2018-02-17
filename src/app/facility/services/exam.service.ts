@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
-import 'rxjs/add/operator/throw';
+import 'rxjs/add/observable/throw';
 
 import { API } from '../../config';
 import { Exam } from '../../submission';

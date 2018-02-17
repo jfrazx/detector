@@ -16,6 +16,7 @@ import { reducers, effects } from './store';
 import { AuthModule } from './auth';
 import { SharedModule } from './shared';
 import { SubmissionModule } from './submission';
+import { FacilityModule } from './facility';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +39,7 @@ export const imports: any[] = [
   BrowserModule,
   AuthModule,
   SharedModule,
+  FacilityModule,
   SubmissionModule,
   environment.production ? [] : StoreDevtoolsModule.instrument(),
   StoreModule.forRoot(reducers, { metaReducers }),
