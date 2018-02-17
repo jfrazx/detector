@@ -9,7 +9,7 @@ import { Stack } from '../../models';
 @Component({
   selector: 'app-stack-item',
   templateUrl: './stack-item.component.html',
-  styleUrls: ['./stack-item.component.css'],
+  styleUrls: ['stack-item.component.scss'],
 })
 export class StackItemComponent implements OnInit {
   stack$: Observable<Stack>;

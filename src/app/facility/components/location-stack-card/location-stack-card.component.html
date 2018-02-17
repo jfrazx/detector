@@ -1,6 +1,6 @@
 <div class="row">
-  <div class='col-lg-12 col-sm-2' *ngFor='let slice of stacks | eachSlice:3'>
-    <div *ngFor='let stack of slice' class='col-sm-6 col-md-2 col-lg-12 tile-container'>
+  <div class='col-lg-12' *ngFor='let slice of stacks | eachSlice:3'>
+    <div *ngFor='let stack of slice' class='col-lg-12 tile-container'>
       <app-tile size='30' [text]='stack.name' (click)='selectStack(stack)' [selected]='inStacks(stack)'>
         <i>
           <fa name='check-square'></fa>

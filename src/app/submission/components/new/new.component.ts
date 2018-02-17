@@ -9,7 +9,7 @@ import { Stack } from '../../models';
 @Component({
   selector: 'app-stack-new',
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.css'],
+  styleUrls: ['new.component.scss'],
 })
 export class StackNewComponent {
   errors: string[] = [];

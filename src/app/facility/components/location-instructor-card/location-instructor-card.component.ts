@@ -19,7 +19,7 @@ const STACK_CARD_ACCESSOR = {
 @Component({
   selector: 'app-location-instructor-card',
   templateUrl: './location-instructor-card.component.html',
-  styleUrls: ['./location-instructor-card.component.css'],
+  styleUrls: ['location-instructor-card.component.scss'],
   providers: [STACK_CARD_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

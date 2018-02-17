@@ -9,7 +9,7 @@ import { Location, Instructor, Stack } from '../../models';
 @Component({
   selector: 'app-location-view',
   templateUrl: './location-view.component.html',
-  styleUrls: ['./location-view.component.css'],
+  styleUrls: ['location-view.component.scss'],
 })
 export class LocationViewComponent implements OnInit {
   stacks$: Observable<Stack[]>;

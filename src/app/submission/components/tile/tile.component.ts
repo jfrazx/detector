@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-stack-tile',
   templateUrl: './tile.component.html',
-  styleUrls: ['./tile.component.css'],
+  styleUrls: ['tile.component.scss'],
 })
 export class StackTileComponent {
   @Input() text: String;

@@ -9,7 +9,7 @@ import * as fromSubmissions from '../../store';
 @Component({
   selector: 'app-stack-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  styleUrls: ['list.component.scss'],
 })
 export class StackListComponent implements OnInit {
   stacks$: Observable<Stack[]>;

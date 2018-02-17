@@ -7,7 +7,7 @@ import { StackService } from '../../services';
 @Component({
   selector: 'app-stack-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css'],
+  styleUrls: ['details.component.scss'],
 })
 export class StackDetailsComponent {
   @Input() stack: Stack;
