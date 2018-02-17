@@ -4,36 +4,28 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 // Components
-import { FooterComponent, HeaderComponent } from './components';
+import * as fromComponents from './components';
 
-import { EachSlicePipe } from './pipes';
-import { ClickLinkDirective } from './directives/click-link.directive';
-import { PregexPipe } from './pipes/pregex.pipe';
-import { XRemoveComponent } from './components/x-remove/x-remove.component';
-import { DisplayOnHoverDirective } from './directives/display-on-hover.directive';
+// Pipes
+import * as fromPipes from './pipes';
+
+// Directives
+import * as fromDirectives from './directives';
 
 @NgModule({
   declarations: [
-    EachSlicePipe,
-    FooterComponent,
-    HeaderComponent,
-    XRemoveComponent,
-    ClickLinkDirective,
-    PregexPipe,
-    DisplayOnHoverDirective,
+    ...fromComponents.components,
+    ...fromDirectives.directives,
+    ...fromPipes.pipes,
   ],
-  imports: [NgbModule, AngularFontAwesomeModule],
+  imports: [NgbModule, AngularFontAwesomeModule, CommonModule],
   providers: [],
   exports: [
     NgbModule,
-    PregexPipe,
-    EachSlicePipe,
-    FooterComponent,
-    HeaderComponent,
-    XRemoveComponent,
-    ClickLinkDirective,
-    DisplayOnHoverDirective,
     AngularFontAwesomeModule,
+    ...fromPipes.pipes,
+    ...fromDirectives.directives,
+    ...fromComponents.components,
   ],
 })
 export class SharedModule {}

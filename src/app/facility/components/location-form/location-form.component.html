@@ -1,0 +1,36 @@
+<div class="location-form">
+  <form [formGroup]='form' novalidate>
+    <div class="form-group">
+      <h2 class='text-center'>Location</h2>
+      <input type="text" formControlName='location' class='form-control' [class.error]='locationControlInvalid' placeholder='e.g. Seattle'>
+
+      <div *ngIf='locationControlInvalid' class="alert alert-warning">
+        <small>You must provide a
+          <span>location</span>
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group stacks-list">
+      <h3 class='text-center'>Stacks</h3>
+      <app-location-stack-card class='list-group-item' [stacks]='stacks' formControlName='stacks'>
+      </app-location-stack-card>
+    </div>
+
+    <div class="form-group instructors-list">
+      <h3 class='text-center'>Instructors</h3>
+      <app-location-instructor-card class='list-group-item' [instructors]='instructors' formControlName='instructors'>
+      </app-location-instructor-card>
+    </div>
+
+    <div class="location-form-actions">
+      <button type="button" class="btn btn-primary float-right" *ngIf="!exists" (click)="createLocation(form)" [disabled]='form.invalid'>
+        Create Location
+      </button>
+
+      <button type="button" class="btn btn-warning float-right" *ngIf="exists" (click)="updateLocation(form)" [disabled]='form.untouched'>
+        Update Location
+      </button>
+    </div>
+  </form>
+</div>

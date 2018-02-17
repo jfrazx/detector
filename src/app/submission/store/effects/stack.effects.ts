@@ -20,7 +20,7 @@ export class StackEffects {
         this.stackService
           .getStacks()
           .pipe(
-            map(exams => new stackActions.LoadStacksSuccess(exams)),
+            map(stacks => new stackActions.LoadStacksSuccess(stacks)),
             catchError(error => of(new stackActions.LoadStacksFail(error)))
           )
       )

@@ -1,0 +1,9 @@
+<div class='tile' [class.selected]='selected'>
+  <span [hidden]='!selected'>
+    <ng-content></ng-content>
+  </span>
+  <ng-content select='app-x-remove'></ng-content>
+  <p class="tile-text" [ngStyle]="{ 'font-size': size + 'px' }">
+    {{ text }}
+  </p>
+</div>
