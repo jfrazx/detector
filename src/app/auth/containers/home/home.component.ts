@@ -7,7 +7,7 @@ import { Login, Register } from '../../models';
 @Component({
   selector: 'app-auth-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['home.component.scss'],
 })
 export class HomeComponent {
   constructor(private auth: AuthService, private router: Router) {}

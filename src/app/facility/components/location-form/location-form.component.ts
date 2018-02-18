@@ -22,7 +22,7 @@ import { Location, Stack, User } from '../../models';
 @Component({
   selector: 'app-location-form',
   templateUrl: './location-form.component.html',
-  styleUrls: ['./location-form.component.css'],
+  styleUrls: ['location-form.component.scss'],
 })
 export class LocationFormComponent implements OnInit, OnChanges {
   @Input() location: Location;

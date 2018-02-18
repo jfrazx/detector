@@ -9,7 +9,7 @@ import { Location } from '../../models';
 @Component({
   selector: 'app-location-list',
   templateUrl: './location-list.component.html',
-  styleUrls: ['./location-list.component.css'],
+  styleUrls: ['location-list.component.scss'],
 })
 export class LocationListComponent implements OnInit {
   locations$: Observable<Location[]>;

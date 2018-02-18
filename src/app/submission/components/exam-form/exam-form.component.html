@@ -1,0 +1,80 @@
+<app-form-panel text='exams' font='40' [pull]='true'>
+
+  <form [formGroup]='form' novalidate>
+    <app-form-panel text='name'>
+      <div class="form-group">
+        <input formControlName='name' placeholder='Surveys' type="text" class="form-control" name='name'>
+
+        <div *ngIf='nameControlInvalid' class="alert alert-warning text-center">
+          <small>You must provide a
+            <span>name</span>
+          </small>
+        </div>
+      </div>
+    </app-form-panel>
+    <app-form-panel text='option'>
+      <div class="form-group">
+        <input formControlName='option' type="text" class="form-control" name='option' placeholder='A'>
+
+        <div *ngIf='optionControlInvalid' class="alert alert-warning text-center">
+          <small>You must provide an
+            <span>option</span>
+          </small>
+        </div>
+      </div>
+    </app-form-panel>
+    <app-form-panel text='stack'>
+      <div class="form-group">
+        <select name="stack" id="stack" formControlName='stack' class='form-control'>
+          <option disabled [selected]='!exam'>Choose a stack</option>
+          <option *ngFor='let stack of stacks' [value]="stack._id" [selected]='exam?.stack === stack._id'>
+            {{stack.name}}
+          </option>
+        </select>
+      </div>
+    </app-form-panel>
+    <app-form-panel text='Wireframe URL'>
+      <div class="form-group">
+        <input type="text" class="form-control" name='wireframe' formControlName='wireframe'>
+
+        <div *ngIf='wireframeControlInvalid' class="alert alert-warning text-center">
+          <small>You must provide a
+            <span>wireframe</span>
+          </small>
+        </div>
+      </div>
+    </app-form-panel>
+    <app-form-panel text='active'>
+      <div class="form-group">
+
+        <div class="radio">
+          <label>
+            Active
+            <input [value]='true' type="radio" name='active' [checked]='exam ? exam.active : true' formControlName='active'>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            Retired
+            <input [value]='false' type="radio" name='active' [checked]='exam?.active' formControlName='active'>
+          </label>
+        </div>
+
+      </div>
+    </app-form-panel>
+
+    <div class="exam-form__actions">
+      <button class="btn btn-secondary" (click)='goBack()'>
+        Cancel
+      </button>
+
+      <button class="btn btn-primary float-right" [disabled]='form.invalid' *ngIf='!exists' (click)='createExam(form)'>
+        Create Exam
+      </button>
+
+      <button class="btn btn-warning float-right" [disabled]='form.invalid || form.untouched' *ngIf='exists' (click)='updateExam(form)'>
+        Update Exam
+      </button>
+    </div>
+  </form>
+</app-form-panel>

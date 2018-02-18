@@ -3,7 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { environment } from '../environments/environment';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/submission',
+  },
+  {
+    path: 'facility',
+    loadChildren: './facility/facility.module#FacilityModule',
+  },
+  {
+    path: 'submission',
+    loadChildren: './submission/submission.module#SubmissionModule',
+  },
+];
 
 @NgModule({
   imports: [

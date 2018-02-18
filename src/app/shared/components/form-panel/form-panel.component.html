@@ -1,0 +1,8 @@
+<div class="panel panel-primary border">
+  <div class="panel-body">
+    <h4 class="text-on-panel text-{{color}}" [class.float-right]='pull' [ngStyle]="{ 'font-size': font + 'px', 'position': pull ? 'inherit' : 'absolute' }">
+      <strong class="text-uppercase"> {{ text }} </strong>
+    </h4>
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -2,98 +2,97 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-lg-12">
-      <div class="margin-20">
-        <h4>Stackables</h4>
-      </div>
-      <form [formGroup]="form" novalidate>
-        <div class="form-group" class="margin-20">
-          <label class='control-label'>Name</label>
-          <input type="text" class="form-control" formControlName="name">
-          <small *ngIf="
-                form.get('name').touched &&
-                form.get('name').hasError('minlength')
-              " class="text-danger">
-            Name must be at least {{ form.controls.name.errors.minlength.requiredLength }} characters, {{ form.controls.name.errors.minlength.requiredLength
-            - form.controls.name.errors.minlength.actualLength }} more characters needed.
-          </small>
-          <small *ngIf="
-                form.get('name').touched &&
-                form.get('name').hasError('required')
-              " class="text-danger">
-            Name is required
-          </small>
-        </div>
-        <!--ignore_directories-->
-        <div formArrayName="ignore_directories">
-          <h5>Ignore Directories</h5>
-          <div *ngFor="let directory of form.controls.ignore_directories.controls; let idx = index" class="panel panel-default">
-            <div class="panel-heading">
-              <span>Directory {{ idx + 1 }}</span>
-              <span class="float-right" (click)="removeField(idx, 'ignore_directories')">
-                <fa name="times-circle"></fa>
-              </span>
+      <app-form-panel text='stacks' [pull]='true' font='40'>
+        <form [formGroup]="form" novalidate>
+          <app-form-panel text='name'>
+            <div class="form-group" class="margin-20">
+              <input type="text" class="form-control" formControlName="name">
+              <small *ngIf="
+                            form.get('name').touched &&
+                            form.get('name').hasError('minlength')
+                          " class="text-danger">
+                Name must be at least {{ form.controls.name.errors.minlength.requiredLength }} characters, {{ form.controls.name.errors.minlength.requiredLength
+                - form.controls.name.errors.minlength.actualLength }} more characters needed.
+              </small>
+              <small *ngIf="
+                            form.get('name').touched &&
+                            form.get('name').hasError('required')
+                          " class="text-danger">
+                Name is required
+              </small>
             </div>
-            <div class="panel-body" [formGroupName]="idx">
-              <div class="form-group col-xs-6">
-                <input type="text" class="form-control" formControlName="field">
-                <small *ngIf="
-                      directory.get('field').touched &&
-                      directory.get('field').errors
-                    " class="text-danger">
-                  Field is required
-                </small>
-              </div>
+          </app-form-panel>
+          <!--ignore_directories-->
+          <app-form-panel text='ignore directories'>
+            <div formArrayName="ignore_directories">
+              <app-form-panel *ngFor="let directory of form.controls.ignore_directories.controls; let idx = index" class="panel panel-default"
+                text='Directory {{ idx + 1 }}' [pull]='true' color='muted' font='16'>
+                <div class="panel-heading">
+                  <app-x-remove (click)="removeField(idx, 'ignore_directories')" [displayOnHover]='4' [float]='false'></app-x-remove>
+                </div>
+                <div class="panel-body" [formGroupName]="idx">
+                  <div class="form-group col-xs-6">
+                    <input type="text" class="form-control" formControlName="field">
+                    <small *ngIf="
+                                  directory.get('field').touched &&
+                                  directory.get('field').errors
+                                " class="text-danger">
+                      Field is required
+                    </small>
+                  </div>
+                </div>
+              </app-form-panel>
             </div>
+          </app-form-panel>
+
+          <div class="margin-20">
+            <button (click)="addField('ignore_directories')" style="cursor: default">
+              <fa name="plus"></fa>
+            </button>
           </div>
-        </div>
 
-        <div class="margin-20">
-          <button (click)="addField('ignore_directories')" style="cursor: default">
-            <fa name="plus"></fa>
-          </button>
-        </div>
+          <!--ignore_files-->
+          <app-form-panel text='ignore files'>
+            <div formArrayName="ignore_files" class="margin-20">
+              <app-form-panel *ngFor="let file of form.controls.ignore_files.controls; let idx = index" class="panel panel-default" text='File {{ idx + 1 }}'
+                [pull]='true' color='muted' font='16'>
+                <div class="panel-heading">
+                  <app-x-remove (click)="removeField(idx, 'ignore_directories')" [displayOnHover]='4'></app-x-remove>
+                </div>
+                <div class="panel-body" [formGroupName]="idx">
+                  <div class="form-group col-xs-6">
+                    <input type="text" class="form-control" formControlName="field">
+                    <small *ngIf="
+                                    file.get('field').touched &&
+                                    file.get('field').errors
+                                  " class="text-danger">
+                      Field is required
+                    </small>
+                  </div>
+                </div>
+              </app-form-panel>
+            </div>
+          </app-form-panel>
 
-        <!--ignore_files-->
-        <div formArrayName="ignore_files" class="margin-20">
-          <h5>Ignore Files</h5>
-          <div *ngFor="let file of form.controls.ignore_files.controls; let idx = index" class="panel panel-default">
-            <div class="panel-heading">
-              <span>File {{ idx + 1 }}</span>
-              <span class="float-right" (click)="removeField(idx, 'ignore_files')">
-                <fa name="times-circle"></fa>
-              </span>
-            </div>
-            <div class="panel-body" [formGroupName]="idx">
-              <div class="form-group col-xs-6">
-                <input type="text" class="form-control" formControlName="field">
-                <small *ngIf="
-                        file.get('field').touched &&
-                        file.get('field').errors
-                      " class="text-danger">
-                  Field is required
-                </small>
-              </div>
-            </div>
+          <div class="margin-20">
+            <button (click)="addField('ignore_files')" style="cursor: default">
+              <fa name="plus"></fa>
+            </button>
           </div>
-        </div>
 
-        <div class="margin-20">
-          <button (click)="addField('ignore_files')" style="cursor: default">
-            <fa name="plus"></fa>
-          </button>
-        </div>
+          <div class="margin-20">
+            <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)='createStack(form)' *ngIf='!exists'>
+              Submit
+            </button>
 
-        <div class="margin-20">
-          <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)='createStack(form)' *ngIf='!exists'>
-            Submit
-          </button>
-
-          <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid" (click)='updateForm(form)' *ngIf='exists'>
-            Update
-          </button>
-        </div>
-        <div class="clearfix"></div>
-      </form>
+            <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid || form.untouched" (click)='updateForm(form)'
+              *ngIf='exists'>
+              Update
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+      </app-form-panel>
     </div>
   </div>
 </div>

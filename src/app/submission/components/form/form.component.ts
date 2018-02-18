@@ -19,7 +19,7 @@ const EMPTY_MESSAGE =
 @Component({
   selector: 'app-stack-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: ['form.component.scss'],
 })
 export class StackFormComponent implements OnInit, OnChanges {
   @Input() passedStack: Stack;

@@ -9,7 +9,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'app-stack-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css'],
+  styleUrls: ['edit.component.scss'],
 })
 export class StackEditComponent implements OnInit {
   stack: Stack;
