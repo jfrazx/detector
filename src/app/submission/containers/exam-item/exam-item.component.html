@@ -1,0 +1,5 @@
+<div class="exam-item">
+  <app-exam-form [exam]='exam$ | async' [stacks]='stacks$ | async' (create)='onCreate($event)' (update)='onUpdate($event)'
+    (back)='onBack()'>
+  </app-exam-form>
+</div>

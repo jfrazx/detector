@@ -4,16 +4,26 @@ import * as fromContainers from './containers';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'locations',
+  },
+  {
     path: 'locations',
-    component: fromContainers.LocationListComponent,
-  },
-  {
-    path: 'locations/new',
-    component: fromContainers.LocationViewComponent,
-  },
-  {
-    path: 'locations/:locationId',
-    component: fromContainers.LocationViewComponent,
+    children: [
+      {
+        path: '',
+        component: fromContainers.LocationListComponent,
+      },
+      {
+        path: 'new',
+        component: fromContainers.LocationViewComponent,
+      },
+      {
+        path: ':locationId',
+        component: fromContainers.LocationViewComponent,
+      },
+    ],
   },
 ];
 

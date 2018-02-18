@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../store';
+
+import { Exam } from '../../models';
 
 @Component({
   selector: 'app-exam-list',
@@ -6,7 +13,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['exam-list.component.scss'],
 })
 export class ExamListComponent implements OnInit {
-  constructor() {}
+  exams$: Observable<Exam[]>;
 
-  ngOnInit() {}
+  constructor(private store: Store<fromStore.SubmissionState>) {}
+
+  ngOnInit() {
+    this.exams$ = this.store.select(fromStore.getExams);
+
+    this.store.dispatch(new fromStore.LoadExams());
+  }
 }

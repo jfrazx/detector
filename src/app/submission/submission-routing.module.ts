@@ -8,32 +8,62 @@ import * as fromContainers from './containers';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'stacks',
+  },
+  {
     path: 'stacks',
-    component: fromComponents.StackComponent,
     children: [
       {
         path: '',
-        redirectTo: 'list',
-        pathMatch: 'full',
+        component: fromContainers.StackListComponent,
       },
       {
         path: 'new',
         component: fromContainers.StackItemComponent,
       },
       {
-        path: 'list',
-        component: fromContainers.StackListComponent,
-      },
-      {
-        path: ':stackId/edit',
+        path: ':stackId',
         component: fromContainers.StackItemComponent,
       },
     ],
   },
 
   {
+    path: 'exams',
+    children: [
+      {
+        path: '',
+        component: fromContainers.ExamListComponent,
+      },
+      {
+        path: 'new',
+        component: fromContainers.ExamItemComponent,
+      },
+      {
+        path: ':examId',
+        component: fromContainers.ExamItemComponent,
+      },
+    ],
+  },
+
+  {
     path: 'belts',
-    component: fromContainers.BeltListComponent,
+    children: [
+      {
+        path: '',
+        component: fromContainers.BeltListComponent,
+      },
+      {
+        path: 'new',
+        component: fromContainers.BeltListComponent,
+      },
+      {
+        path: ':beltId',
+        component: fromContainers.BeltListComponent,
+      },
+    ],
   },
 ];
 

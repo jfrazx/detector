@@ -30,9 +30,13 @@ class ExamController implements CRUD {
     next: NextFunction
   ): Promise<void> {
     response.json(
-      await Exam.findByIdAndUpdate(request.params.exam_id, {
-        $set: request.body,
-      }).lean()
+      await Exam.findByIdAndUpdate(
+        request.params.exam_id,
+        {
+          $set: request.body,
+        },
+        { new: true }
+      ).lean()
     );
   }
   async destroy(

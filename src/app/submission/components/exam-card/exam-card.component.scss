@@ -1,0 +1,31 @@
+img {
+  // max-height: 180px;
+
+  &:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  }
+}
+
+.card-container {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding-left: 10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  box-shadow: 5px 3px 7px 5px rgba(0, 0, 0, 0.45);
+}
+
+.card-thumbnail {
+  padding: 1px;
+  margin: 2px;
+}
+
+.card-thumbnail img {
+  display: block;
+}
+.card-content {
+  margin-left: 210px;
+}
+.card-title {
+  font-weight: bold;
+  font-size: 200%;
+}

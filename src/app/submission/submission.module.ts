@@ -15,8 +15,7 @@ import * as fromServices from './services';
 import { reducers, effects } from './store';
 
 import { SharedModule } from '../shared';
-import { StackItemComponent } from './containers/stack-item/stack-item.component';
-import { ExamListComponent } from './containers/exam-list/exam-list.component';
+import { ExamFormComponent } from './components/exam-form/exam-form.component';
 
 @NgModule({
   imports: [
@@ -29,12 +28,7 @@ import { ExamListComponent } from './containers/exam-list/exam-list.component';
     EffectsModule.forFeature(effects),
     StoreModule.forFeature('submissions', reducers),
   ],
-  declarations: [
-    ...fromComponents.components,
-    ...fromContainers.containers,
-    StackItemComponent,
-    ExamListComponent,
-  ],
+  declarations: [...fromComponents.components, ...fromContainers.containers, ExamFormComponent],
   providers: [...fromServices.services],
 })
 export class SubmissionModule {}

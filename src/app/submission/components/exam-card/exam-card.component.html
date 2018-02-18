@@ -1,0 +1,21 @@
+<div class="row card-container">
+  <div class="col-3 card-thumbnail">
+    <img [src]="exam.wireframe" class='img img-thumbnail' alt="wireframe">
+  </div>
+  <div class="col-sm">
+    <h3 class='text-center'>{{exam.name}}</h3>
+    <h5>Option: {{exam.option}}</h5>
+  </div>
+  <div class="col-sm">
+    <p>
+      <a routerLink='/submission/stacks/{{exam.stack}}/exams'>{{exam.stack}}</a>
+    </p>
+    <h5>Active: {{exam.active}}</h5>
+  </div>
+  <div class="col-sm">
+    <app-x-remove [displayOnHover]='2'></app-x-remove>
+    <div>
+      <button clickLink='/submission/exams/{{exam._id}}' class="btn btn-warning">Edit</button>
+    </div>
+  </div>
+</div>

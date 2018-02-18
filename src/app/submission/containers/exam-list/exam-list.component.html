@@ -1,3 +1,4 @@
-<p>
-  exam-list works!
-</p>
+<app-form-panel class='row' text='exams' [font]='30' [pull]='true'>
+  <app-exam-card *ngFor='let exam of exams$ | async' [exam]='exam' class='col-lg-12'>
+  </app-exam-card>
+</app-form-panel>

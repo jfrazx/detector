@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { Update } from '@ngrx/entity';
+import { Store } from '@ngrx/store';
 
 import { of } from 'rxjs/observable/of';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, tap, catchError } from 'rxjs/operators';
+import * as fromRouter from '../../../store';
 
 import * as examActions from '../actions/exam.actions';
 import * as fromServices from '../../services';
+import * as fromStore from '../reducers';
 
 import { Exam } from '../../models';
 
@@ -36,6 +39,11 @@ export class ExamEffects {
           .createExam(exam)
           .pipe(
             map(createdExam => new examActions.ExamCreateSuccess(createdExam)),
+            tap(() =>
+              this.store.dispatch(
+                new fromRouter.Go({ path: ['/submission/exams'] })
+              )
+            ),
             catchError(error => of(new examActions.ExamCreateFail(error)))
           )
       )
@@ -78,6 +86,7 @@ export class ExamEffects {
 
   constructor(
     private actions$: Actions,
-    private examService: fromServices.ExamService
+    private examService: fromServices.ExamService,
+    private store: Store<fromStore.SubmissionState>
   ) {}
 }
