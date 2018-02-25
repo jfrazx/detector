@@ -1,6 +1,6 @@
 import { Capability } from './capability';
 
-export class Role {
+export interface Role {
   _id: string;
   role: string;
   capabilities: Array<Capability>;

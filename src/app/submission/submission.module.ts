@@ -7,15 +7,19 @@ import { NgModule } from '@angular/core';
 
 import { SubmissionRoutingModule } from './submission-routing.module';
 
+// components
 import * as fromComponents from './components';
+
+// containers
 import * as fromContainers from './containers';
 
+// services
 import * as fromServices from './services';
 
+// store
 import { reducers, effects } from './store';
 
 import { SharedModule } from '../shared';
-import { ExamFormComponent } from './components/exam-form/exam-form.component';
 
 @NgModule({
   imports: [
@@ -28,7 +32,7 @@ import { ExamFormComponent } from './components/exam-form/exam-form.component';
     EffectsModule.forFeature(effects),
     StoreModule.forFeature('submissions', reducers),
   ],
-  declarations: [...fromComponents.components, ...fromContainers.containers, ExamFormComponent],
+  declarations: [...fromComponents.components, ...fromContainers.containers],
   providers: [...fromServices.services],
 })
 export class SubmissionModule {}

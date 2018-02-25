@@ -1,6 +1,7 @@
 import { Exam } from './exam';
 import { SubmissionFile } from './submission-file';
-import { Student, User } from '../../facility';
+import { Student } from '../../facility';
+import { User } from '../../admin';
 
 export class Submission {
   _id: string;

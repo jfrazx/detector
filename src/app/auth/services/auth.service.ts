@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import 'rxjs/add/observable/throw';
 
 import { Login, Register } from '../models';
-import { User } from '../../facility';
+import { User } from '../../admin';
 
 import { API } from '../../config';
 

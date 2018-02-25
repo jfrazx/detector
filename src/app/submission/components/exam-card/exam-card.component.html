@@ -8,14 +8,14 @@
   </div>
   <div class="col-sm">
     <p>
-      <a routerLink='/submission/stacks/{{exam.stack}}/exams'>{{exam.stack}}</a>
+      <a routerLink='/stacks/{{exam.stack}}/exams'>{{exam.stack}}</a>
     </p>
     <h5>Active: {{exam.active}}</h5>
   </div>
   <div class="col-sm">
     <app-x-remove [displayOnHover]='2'></app-x-remove>
     <div>
-      <button clickLink='/submission/exams/{{exam._id}}' class="btn btn-warning">Edit</button>
+      <button clickLink='/exams/{{exam._id}}' class="btn btn-warning">Edit</button>
     </div>
   </div>
 </div>

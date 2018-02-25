@@ -1,5 +1,5 @@
 import * as fromAuth from '../actions';
-import { User } from '../../../facility';
+import { User } from '../../../admin';
 
 import { mapToEntities } from '../../../utils';
 

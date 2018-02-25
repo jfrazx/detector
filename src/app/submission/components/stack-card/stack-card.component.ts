@@ -4,8 +4,8 @@ import { Stack } from '../../models';
 
 @Component({
   selector: 'app-stack-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['card.component.scss'],
+  templateUrl: './stack-card.component.html',
+  styleUrls: ['stack-card.component.scss'],
 })
 export class StackCardComponent {
   @Input() stack: Stack;

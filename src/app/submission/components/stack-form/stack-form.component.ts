@@ -18,43 +18,54 @@ const EMPTY_MESSAGE =
 
 @Component({
   selector: 'app-stack-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['form.component.scss'],
+  templateUrl: './stack-form.component.html',
+  styleUrls: ['stack-form.component.scss'],
 })
-export class StackFormComponent implements OnInit, OnChanges {
-  @Input() passedStack: Stack;
-
-  stack: Stack = new Stack();
+export class StackFormComponent implements OnChanges {
+  @Input() stack: Stack;
 
   @Output() create = new EventEmitter<IStack>();
   @Output() update = new EventEmitter<Stack>();
 
-  form: FormGroup;
+  form: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    ignore_directories: this.fb.array(this.initIgnore([])),
+    ignore_files: this.fb.array(this.initIgnore([])),
+  });
 
   exists = false;
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      name: [this.stack.name, [Validators.required, Validators.minLength(2)]],
-      ignore_directories: this.fb.array(
-        this.initIgnore(this.stack.ignore_directories)
-      ),
-      ignore_files: this.fb.array(this.initIgnore(this.stack.ignore_files)),
-    });
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.passedStack) {
+    if (this.stack) {
       this.exists = true;
-      this.stack = this.passedStack;
+      this.form.patchValue(this.stack);
+      this.updateArrayFields();
     }
   }
 
-  private addField(field: string): void {
+  private updateArrayFields(): void {
+    ['ignore_directories', 'ignore_files'].forEach(field => {
+      this.resetField(field);
+
+      const content = this.stack[field] as string[];
+
+      content.forEach(value => this.addField(field, value));
+    });
+  }
+
+  private addField(field: string, value = ''): void {
     const control = this.retrieveField(field);
-    control.push(this.initField());
+    control.push(this.initField(value));
+  }
+
+  private resetField(field: string): void {
+    const control = this.retrieveField(field);
+
+    for (let index = control.length; index >= 0; index--) {
+      control.removeAt(index);
+    }
   }
 
   private removeField(index: number, field: string): void {
@@ -81,8 +92,10 @@ export class StackFormComponent implements OnInit, OnChanges {
   }
 
   createStack(form: NgForm): void {
-    if (form.valid) {
-      const stack: IStack = this.stackFromForm(form);
+    const { value, valid } = form;
+
+    if (valid) {
+      const stack: IStack = this.stackFromForm(value);
 
       if (this.emptyIgnores(stack)) {
         if (!confirm(EMPTY_MESSAGE)) {
@@ -95,10 +108,12 @@ export class StackFormComponent implements OnInit, OnChanges {
   }
 
   updateStack(form: NgForm): void {
-    if (form.valid) {
-      const stack: Stack = this.stackFromForm(form) as Stack;
+    const { valid, value } = form;
 
-      this.update.emit(stack);
+    if (form.valid) {
+      const stack: Stack = this.stackFromForm(value) as Stack;
+
+      this.update.emit({ ...this.stack, ...stack });
     }
   }
 
@@ -112,13 +127,13 @@ export class StackFormComponent implements OnInit, OnChanges {
     return array.length === 0;
   }
 
-  private stackFromForm(form: NgForm): IStack {
+  private stackFromForm(value: any): IStack {
     return {
-      name: form.value.name as string,
-      ignore_directories: form.value.ignore_directories.map(
+      name: value.name as string,
+      ignore_directories: value.ignore_directories.map(
         input => input.field as string
       ),
-      ignore_files: form.value.ignore_files.map(input => input.field as string),
+      ignore_files: value.ignore_files.map(input => input.field as string),
     };
   }
 }

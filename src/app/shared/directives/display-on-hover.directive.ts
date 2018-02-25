@@ -16,8 +16,11 @@ import {
 export class DisplayOnHoverDirective
   implements OnInit, AfterContentInit, OnChanges {
   @HostBinding('hidden') hidden = false;
+  @HostBinding('style.visibility') visible = 'inherit';
 
   @Input() displayOnHover = 1;
+
+  @Input() displayNone = true;
 
   @Input() debug = false;
 
@@ -27,26 +30,41 @@ export class DisplayOnHoverDirective
 
   ngOnInit(): void {
     const parent = this.getParent();
+    const change = this.displayNone ? this.toggleHidden : this.toggleVisible;
+
     this.events.forEach(event => {
       this.renderer.listen(parent, event, () => {
         if (this.debug) {
-          console.log(`::displayOnHover:: hover event: ${event}`, this.hidden);
+          console.log(
+            `::displayOnHover:: hover event: ${event} :: hidden: ${
+              this.hidden
+            } :: visibility: ${this.visible}`
+          );
         }
-        this.hidden = !this.hidden;
+
+        change.call(this);
       });
     });
   }
 
-  ngAfterContentInit(): void {
-    this.hidden = true;
+  ngAfterContentInit() {
+    this.displayNone ? (this.hidden = true) : (this.visible = 'hidden');
   }
 
   ngOnChanges() {
     this.displayOnHover = parseInt(this.displayOnHover as any, 10);
 
-    if (!Number.isInteger(this.displayOnHover) || this.displayOnHover <= 0) {
+    if (this.invalidDepth()) {
       this.displayOnHover = 1;
     }
+  }
+
+  toggleHidden(): void {
+    this.hidden = !this.hidden;
+  }
+
+  toggleVisible(): void {
+    this.visible = this.visible === 'hidden' ? 'inherit' : 'hidden';
   }
 
   private getParent(): ElementRef {
@@ -68,5 +86,9 @@ export class DisplayOnHoverDirective
     }
 
     return el;
+  }
+
+  private invalidDepth(): boolean {
+    return !Number.isInteger(this.displayOnHover) || this.displayOnHover <= 0;
   }
 }

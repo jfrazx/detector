@@ -1,6 +1,6 @@
 import { Submission, SubmissionFile } from '../../submission';
 
-export class FingerPrint {
+export interface FingerPrint {
   _id: string;
   file: SubmissionFile;
   filename: string;

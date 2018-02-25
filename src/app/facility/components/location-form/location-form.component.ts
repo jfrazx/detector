@@ -17,7 +17,7 @@ import {
 
 import { map } from 'rxjs/operators';
 
-import { Location, Stack, User } from '../../models';
+import { Location, Stack, Instructor } from '../../models';
 
 @Component({
   selector: 'app-location-form',
@@ -27,7 +27,7 @@ import { Location, Stack, User } from '../../models';
 export class LocationFormComponent implements OnInit, OnChanges {
   @Input() location: Location;
   @Input() stacks: Stack[];
-  @Input() instructors: User[];
+  @Input() instructors: Instructor[];
 
   @Output() create: EventEmitter<Location> = new EventEmitter<Location>();
   @Output() update: EventEmitter<Location> = new EventEmitter<Location>();

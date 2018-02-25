@@ -83,7 +83,7 @@ export class ExamFormComponent implements OnChanges {
     const { valid, value, touched } = form;
 
     if (valid && touched) {
-      this.update.emit(value);
+      this.update.emit({ ...this.exam, ...value });
     }
   }
 

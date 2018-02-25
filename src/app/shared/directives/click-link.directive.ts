@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   selector: '[clickLink]',
 })
 export class ClickLinkDirective {
-  @Input() clickLink: string = '/';
+  @Input() clickLink = '/';
 
   constructor(private router: Router) {}
 

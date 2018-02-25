@@ -5,8 +5,8 @@ import * as fromFeature from '../reducers';
 import * as fromCapabilities from '../reducers/capabilities.reducer';
 
 export const getCapabilityState = createSelector(
-  fromFeature.getAuthorizationState,
-  (state: fromFeature.AuthorizationState) => state.capabilities
+  fromFeature.getAdminState,
+  (state: fromFeature.AdminState) => state.capabilities
 );
 
 export const getCapabilityEntities = createSelector(

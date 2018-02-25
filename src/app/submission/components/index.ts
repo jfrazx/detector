@@ -1,29 +1,26 @@
 import { ExamCardComponent } from './exam-card/exam-card.component';
-import { StackCardComponent } from './card/card.component';
+import { ExamFormComponent } from './exam-form/exam-form.component';
+import { StackCardComponent } from './stack-card/stack-card.component';
 import { StackDetailsComponent } from './details/details.component';
-import { StackEditComponent } from './edit/edit.component';
-import { StackFormComponent } from './form/form.component';
+import { StackFormComponent } from './stack-form/stack-form.component';
 import { StackIgnoreablesComponent } from './ignoreables/ignoreables.component';
-import { StackNewComponent } from './new/new.component';
 import { StackTileComponent } from './tile/tile.component';
 
 export const components: any[] = [
   ExamCardComponent,
+  ExamFormComponent,
   StackCardComponent,
   StackDetailsComponent,
-  StackEditComponent,
   StackFormComponent,
   StackIgnoreablesComponent,
-  StackNewComponent,
   StackTileComponent,
 ];
 
 export * from './exam-card/exam-card.component';
-
-export * from './card/card.component';
+export * from './exam-form/exam-form.component';
+export * from './stack-card/stack-card.component';
 export * from './details/details.component';
-export * from './edit/edit.component';
-export * from './form/form.component';
+export * from './stack-form/stack-form.component';
 export * from './ignoreables/ignoreables.component';
-export * from './new/new.component';
+
 export * from './tile/tile.component';

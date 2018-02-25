@@ -7,8 +7,8 @@ import * as fromRoles from '../reducers/roles.reducer';
 import { Role } from '../../models';
 
 export const getRoleState = createSelector(
-  fromFeature.getAuthorizationState,
-  (state: fromFeature.AuthorizationState) => state.roles
+  fromFeature.getAdminState,
+  (state: fromFeature.AdminState) => state.roles
 );
 
 export const getRoleEntities = createSelector(
