@@ -7,16 +7,17 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/submission',
+    redirectTo: 'locations',
   },
-  {
-    path: 'facility',
-    loadChildren: './facility/facility.module#FacilityModule',
-  },
-  {
-    path: 'submission',
-    loadChildren: './submission/submission.module#SubmissionModule',
-  },
+  // lazy loading is broken > 5.2.4
+  // {
+  //   path: 'facility',
+  //   loadChildren: './facility/facility.module#FacilityModule',
+  // },
+  // {
+  //   path: 'submission',
+  //   loadChildren: './submission/submission.module#SubmissionModule',
+  // },
 ];
 
 @NgModule({
