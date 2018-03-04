@@ -1,17 +1,82 @@
 <header>
-  <nav class="navbar navbar-toggleable-* navbar-fixed-top navbar-dark db-inverse">
-    <a class="navbar-brand">Detector</a>
+  <mat-toolbar class='nav' color='primary'>
+    <mat-toolbar-row>
+      <span class="navbar-brand" routerLink='home'>
+        <img src="assets/images/impostor.png" alt="Detector">
+      </span>
+      <mat-menu #facilityMenu='matMenu'>
+        <button routerLinkActive='active' mat-menu-item [matMenuTriggerFor]='locationsMenu'>Locations</button>
+        <button routerLinkActive='active' mat-menu-item [matMenuTriggerFor]='studentsMenu'>Students</button>
+      </mat-menu>
 
-    <ul class="nav navbar-nav" routerLinkActive='active'>
-      <li>
-        <a routerLink='dashboard'>Dashboard</a>
-      </li>
-      <li>
-        <a routerLink='submissions'>Submissions</a>
-      </li>
-      <li>
-        <a routerLink='facility'>Facilities</a>
-      </li>
-    </ul>
-  </nav>
+      <mat-menu #locationsMenu='matMenu'>
+        <button routerLinkActive='active' mat-menu-item routerLink='/facilities/locations'>
+          <mat-icon>location_city</mat-icon>
+          Locations
+        </button>
+        <button routerLinkActive='active' mat-menu-item routerLink='/facilities/locations/new'>
+          <mat-icon>room</mat-icon>
+          New Location
+        </button>
+      </mat-menu>
+
+      <mat-menu #studentsMenu='matMenu'>
+        <button routerLinkActive='active' mat-menu-item routerLink='/facilities/students'>
+          <mat-icon>wc</mat-icon>
+          Students
+        </button>
+        <button routerLinkActive='active' mat-menu-item routerLink='/facilities/students/new'>
+          <mat-icon>person_add</mat-icon>
+          New Student
+        </button>
+      </mat-menu>
+
+      <mat-menu #submissionMenu='matMenu'>
+        <button routerLinkActive='active' mat-menu-item [matMenuTriggerFor]='stacksMenu'>Stacks</button>
+      </mat-menu>
+
+      <mat-menu #stacksMenu>
+        <button routerLinkActive='active' mat-menu-item routerLink='/submissions/stacks'>
+          <mat-icon>view_compact</mat-icon>
+          Stacks
+        </button>
+        <button routerLinkActive='active' mat-menu-item routerLink='/submissions/stacks/new'>
+          <mat-icon>filter_none</mat-icon>
+          New Stack
+        </button>
+      </mat-menu>
+
+      <button class='nav-menu-parent' routerLinkActive='active' mat-icon-button [matMenuTriggerFor]='facilityMenu'>Facilities</button>
+      <button class='nav-menu-parent' routerLinkActive='active' mat-icon-button [matMenuTriggerFor]='submissionMenu'>Submissions</button>
+      <span class="fill"></span>
+      <button routerLinkActive='active' mat-icon-button routerLink='/auth'>Login</button>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
 </header>
+
+
+
+<!--
+  <span class="navbar-brand" routerLink='home'>
+      <img src="assets/images/impostor.png" alt="Detector">
+      <small>Detector</small>
+    </span>
+
+    <span class='nav-parent'>
+      <span routerLinkActive='active'>
+        <a routerLink='submissions'>Submissions</a>
+      </span>
+      <span routerLinkActive='active' #facility="routerLinkActive">
+        <a routerLink='facilities'>Facilities</a>
+      </span>
+
+    </span>
+
+    <span class="fill"></span>
+
+
+    <span routerLinkActive='active'>
+      <a routerLink='/auth'>Login</a>
+    </span>
+ -->

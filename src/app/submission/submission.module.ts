@@ -1,5 +1,4 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -28,7 +27,6 @@ import { SharedModule } from '../shared';
     SharedModule,
     ReactiveFormsModule,
     SubmissionRoutingModule,
-    AngularFontAwesomeModule,
     EffectsModule.forFeature(effects),
     StoreModule.forFeature('submissions', reducers),
   ],

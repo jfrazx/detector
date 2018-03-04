@@ -28,7 +28,8 @@
               <app-form-panel *ngFor="let directory of form.controls.ignore_directories.controls; let idx = index" class="panel panel-default"
                 text='Directory {{ idx + 1 }}' [pull]='true' color='muted' font='16'>
                 <div class="panel-heading">
-                  <app-x-remove (click)="removeField(idx, 'ignore_directories')" [displayOnHover]='4' [displayNone]='false' [float]='false'></app-x-remove>
+                  <app-x-remove class='pointer' (click)="removeField(idx, 'ignore_directories')" [displayOnHover]='4' [displayNone]='false'
+                    [float]='false'></app-x-remove>
                 </div>
                 <div class="panel-body" [formGroupName]="idx">
                   <div class="form-group col-xs-6">
@@ -46,9 +47,9 @@
           </app-form-panel>
 
           <div class="margin-20">
-            <button (click)="addField('ignore_directories')" style="cursor: default">
-              <fa name="plus"></fa>
-            </button>
+            <a class='pointer'>
+              <mat-icon (click)="addField('ignore_directories')">add_box</mat-icon>
+            </a>
           </div>
 
           <!--ignore_files-->
@@ -57,7 +58,8 @@
               <app-form-panel *ngFor="let file of form.controls.ignore_files.controls; let idx = index" class="panel panel-default" text='File {{ idx + 1 }}'
                 [pull]='true' color='muted' font='16'>
                 <div class="panel-heading">
-                  <app-x-remove (click)="removeField(idx, 'ignore_directories')" [displayOnHover]='4' [displayNone]='false' [float]='false'></app-x-remove>
+                  <app-x-remove class='pointer' (click)="removeField(idx, 'ignore_directories')" [displayOnHover]='4' [displayNone]='false'
+                    [float]='false'></app-x-remove>
                 </div>
                 <div class="panel-body" [formGroupName]="idx">
                   <div class="form-group col-xs-6">
@@ -75,9 +77,9 @@
           </app-form-panel>
 
           <div class="margin-20">
-            <button (click)="addField('ignore_files')" style="cursor: default">
-              <fa name="plus"></fa>
-            </button>
+            <a class='pointer'>
+              <mat-icon (click)="addField('ignore_files')">add_box</mat-icon>
+            </a>
           </div>
 
           <div class="margin-20">

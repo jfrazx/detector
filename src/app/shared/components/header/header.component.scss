@@ -1,1 +1,39 @@
+.fill {
+  flex: 1 1 auto;
+}
 
+header {
+  background-color: #06aae2;
+}
+
+.nav > * {
+  font-size: 14px;
+}
+
+a:hover {
+  color: #000;
+}
+
+.active {
+  text-decoration: underline;
+  text-decoration-color: gray;
+  a {
+    color: rgba(173, 216, 248, 1);
+
+    &:hover {
+      color: purple;
+    }
+  }
+}
+
+.nav-menu-parent {
+  margin-right: 30px;
+
+  button {
+    color: rgba(173, 216, 248, 1);
+  }
+
+  &:hover {
+    color: purple;
+  }
+}

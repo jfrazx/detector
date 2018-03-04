@@ -21,7 +21,7 @@ import { Location, Stack, Instructor } from '../../models';
 
 @Component({
   selector: 'app-location-form',
-  templateUrl: './location-form.component.html',
+  templateUrl: './location-form.component.test.html',
   styleUrls: ['location-form.component.scss'],
 })
 export class LocationFormComponent implements OnInit, OnChanges {
@@ -32,8 +32,10 @@ export class LocationFormComponent implements OnInit, OnChanges {
   @Output() create: EventEmitter<Location> = new EventEmitter<Location>();
   @Output() update: EventEmitter<Location> = new EventEmitter<Location>();
 
+  locationFocus = false;
+
   form: FormGroup = this.fb.group({
-    location: ['', Validators.required],
+    location: ['', [Validators.required, Validators.minLength(3)]],
     stacks: [[]],
     instructors: [[]],
   });
@@ -44,10 +46,28 @@ export class LocationFormComponent implements OnInit, OnChanges {
     return this.form.get('location') as FormControl;
   }
 
-  get locationControlInvalid() {
+  get locationInvalid() {
+    return this.locationControl.invalid;
+  }
+
+  get locationValid() {
+    return this.locationControl.valid;
+  }
+
+  get locationControlMinLength() {
+    return (
+      this.locationControl.hasError('minlength') && this.locationControl.touched
+    );
+  }
+
+  get locationControlRequired() {
     return (
       this.locationControl.hasError('required') && this.locationControl.touched
     );
+  }
+
+  get locationPlaceHolderText() {
+    return this.locationFocus ? 'Location' : 'e.g. Seattle';
   }
 
   ngOnInit(): void {}

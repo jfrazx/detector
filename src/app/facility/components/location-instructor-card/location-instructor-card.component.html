@@ -2,9 +2,8 @@
   <div class='col-lg-12 col-sm-2' *ngFor='let slice of instructors | eachSlice:3'>
     <div *ngFor='let instructor of slice' class='col-sm-6 col-md-2 col-lg-12 tile-container'>
       <app-tile size='30' text='{{instructor.first_name}} {{instructor.last_name}}' (click)='selectInstructor(instructor)' [selected]='inInstructors(instructor)'>
-        <i>
-          <fa name='check-square'></fa>
-        </i>
+        <mat-icon>check_box</mat-icon>
+
       </app-tile>
     </div>
   </div>

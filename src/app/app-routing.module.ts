@@ -9,15 +9,14 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'locations',
   },
-  // lazy loading is broken > 5.2.4
-  // {
-  //   path: 'facility',
-  //   loadChildren: './facility/facility.module#FacilityModule',
-  // },
-  // {
-  //   path: 'submission',
-  //   loadChildren: './submission/submission.module#SubmissionModule',
-  // },
+  {
+    path: 'facilities',
+    loadChildren: './facility/facility.module#FacilityModule',
+  },
+  {
+    path: 'submissions',
+    loadChildren: './submission/submission.module#SubmissionModule',
+  },
 ];
 
 @NgModule({
