@@ -62,4 +62,6 @@ export interface StudentModel extends Document {
   exams: Array<ExamModel>;
 }
 
+studentSchema.set('toObject', { getters: true });
+
 export const Student = model<StudentModel>('Student', studentSchema);

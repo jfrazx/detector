@@ -1,3 +1,82 @@
-<p>
-  register works!
-</p>
+<section>
+  <app-form-panel text='register' [font]='40' [pull]='true'>
+    <form [formGroup]='form' novalidate>
+      <app-form-panel text='first name'>
+        <mat-form-field class='form-control' [class.valid]='firstNameValid'>
+          <input matInput name='first_name' type="text" formControlName='first_name'>
+
+          <mat-placeholder *ngIf='firstNameInvalid'>
+            First Name
+          </mat-placeholder>
+          <mat-error *ngIf='firstNameControlRequired'>
+            You must provide a first name
+          </mat-error>
+        </mat-form-field>
+      </app-form-panel>
+
+      <app-form-panel text='last name'>
+        <mat-form-field class='form-control' [class.valid]='lastNameValid'>
+          <input matInput name='last_name' type="text" formControlName='last_name'>
+
+          <mat-placeholder *ngIf='lastNameInvalid'>
+            Last Name
+          </mat-placeholder>
+          <mat-error *ngIf='lastNameControlRequired'>
+            You must provide a Last name
+          </mat-error>
+        </mat-form-field>
+      </app-form-panel>
+
+      <app-form-panel text='email'>
+        <mat-form-field class='form-control' [class.valid]='emailValid'>
+          <input matInput name='email' type="email" formControlName='email'>
+
+          <mat-placeholder *ngIf='emailInvalid'>
+            <mat-icon>mail</mat-icon>
+            Email
+          </mat-placeholder>
+          <mat-error *ngIf='emailControlRequired'>
+            You must provide an email
+          </mat-error>
+        </mat-form-field>
+      </app-form-panel>
+
+      <app-form-panel text='location'>
+        <mat-form-field class="form-control" [class.valid]='locationValid'>
+          <mat-select name='location' placeholder='Location' formControlName='location'>
+            <mat-option *ngFor='let location of locations' [value]='location.id'>
+              {{ location.city }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </app-form-panel>
+
+      <app-form-panel text='password'>
+        <mat-form-field class='form-control' [class.valid]='passwordValid'>
+          <input matInput name='password' type="password" formControlName='password'>
+
+          <mat-placeholder *ngIf='passwordInvalid'>
+            <mat-icon>lock</mat-icon>
+            password
+          </mat-placeholder>
+          <mat-error *ngIf='passwordControlRequired'>
+            You must provide a password
+          </mat-error>
+          <mat-error *ngIf='passwordControlRequired'>
+            You must provide a password
+          </mat-error>
+
+          <mat-error *ngIf='passwordLength'>
+            Password must be at least 8 characters
+          </mat-error>
+        </mat-form-field>
+      </app-form-panel>
+
+      <div class="register-form-actions">
+        <button mat-raised-button color='primary' type="button" class="float-right" (click)="registerUser(form)" [disabled]='form.invalid'>
+          Register
+        </button>
+      </div>
+    </form>
+  </app-form-panel>
+</section>

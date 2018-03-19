@@ -69,6 +69,8 @@ export interface ISimilarityAssessment {
   ratings: Array<RatingModel>;
 }
 
+simliarityAssessmentSchema.set('toObject', { getters: true });
+
 export const SimilarityAssessment = model<SimilarityAssessmentModel>(
   'SimilarityAssessment',
   simliarityAssessmentSchema

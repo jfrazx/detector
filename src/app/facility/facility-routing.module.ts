@@ -25,6 +25,23 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'students',
+    children: [
+      {
+        path: '',
+        component: fromContainers.StudentsComponent,
+      },
+      {
+        path: 'new',
+        component: fromContainers.StudentViewComponent,
+      },
+      {
+        path: ':studentId',
+        component: fromContainers.StudentViewComponent,
+      },
+    ],
+  },
 ];
 
 export const FacilityRoutingModule = RouterModule.forChild(routes);

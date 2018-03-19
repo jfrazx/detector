@@ -4,6 +4,9 @@
       <span class="navbar-brand" routerLink='home'>
         <img src="assets/images/impostor.png" alt="Detector">
       </span>
+
+
+
       <mat-menu #facilityMenu='matMenu'>
         <button routerLinkActive='active' mat-menu-item [matMenuTriggerFor]='locationsMenu'>Locations</button>
         <button routerLinkActive='active' mat-menu-item [matMenuTriggerFor]='studentsMenu'>Students</button>
@@ -32,7 +35,19 @@
       </mat-menu>
 
       <mat-menu #submissionMenu='matMenu'>
+        <button routerLinkActive='active' mat-menu-item [matMenuTriggerFor]='examsMenu'>Exams</button>
         <button routerLinkActive='active' mat-menu-item [matMenuTriggerFor]='stacksMenu'>Stacks</button>
+      </mat-menu>
+
+      <mat-menu #examsMenu>
+        <button routerLinkActive='active' mat-menu-item routerLink='/submissions/exams'>
+          <mat-icon>assignment</mat-icon>
+          Exams
+        </button>
+        <button routerLinkActive='active' mat-menu-item routerLink='/submissions/exams/new'>
+          <mat-icon>event_note</mat-icon>
+          New Exam
+        </button>
       </mat-menu>
 
       <mat-menu #stacksMenu>
@@ -51,32 +66,47 @@
       <span class="fill"></span>
       <button routerLinkActive='active' mat-icon-button routerLink='/auth'>Login</button>
 
+
+
     </mat-toolbar-row>
+
+    <ng-container [ngTemplateOutlet]='subMenu'>
+    </ng-container>
   </mat-toolbar>
 </header>
 
 
 
+<ng-template #subMenu let-menus='menus' *ngIf='menus'>
+  <mat-toolbar-row>
+    <span>{{ menus }}</span>
+  </mat-toolbar-row>
+</ng-template>
+
+
+
+
+
+
 <!--
-  <span class="navbar-brand" routerLink='home'>
-      <img src="assets/images/impostor.png" alt="Detector">
-      <small>Detector</small>
-    </span>
 
-    <span class='nav-parent'>
-      <span routerLinkActive='active'>
-        <a routerLink='submissions'>Submissions</a>
-      </span>
-      <span routerLinkActive='active' #facility="routerLinkActive">
-        <a routerLink='facilities'>Facilities</a>
-      </span>
-
-    </span>
-
-    <span class="fill"></span>
-
-
+ <span class='nav-parent'>
     <span routerLinkActive='active'>
-      <a routerLink='/auth'>Login</a>
+      <a routerLink='submissions'>Submissions</a>
     </span>
- -->
+    <span routerLinkActive='active' #facility="routerLinkActive">
+      <a routerLink='facilities'>Facilities</a>
+      {{ subMenu.menus = ['string', 'something'] }}
+      <span *ngIf='facility.isActive'>
+        Active!
+      </span>
+    </span>
+
+  </span>
+
+  <span class="fill"></span>
+
+
+  <span routerLinkActive='active'>
+    <a routerLink='/auth'>Login</a>
+  </span> -->

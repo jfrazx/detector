@@ -61,4 +61,6 @@ interface Target {
   rating: number;
 }
 
+ratingSchema.set('toObject', { getters: true });
+
 export const Rating = model<RatingModel>('Rating', ratingSchema);

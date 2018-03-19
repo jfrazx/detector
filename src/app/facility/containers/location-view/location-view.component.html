@@ -1,4 +1,5 @@
 <section>
-  <app-location-form [location]='location$ | async' [stacks]='stacks$ | async' [instructors]='instructors$ | async'>
+  <app-location-form (create)='onCreate($event)' (update)='onUpdate($event)' (remove)='onRemove($event)' [location]='location$ | async'
+    [stacks]='stacks$ | async' [users]='users$ | async'>
   </app-location-form>
 </section>

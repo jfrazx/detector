@@ -58,8 +58,7 @@
               <app-form-panel *ngFor="let file of form.controls.ignore_files.controls; let idx = index" class="panel panel-default" text='File {{ idx + 1 }}'
                 [pull]='true' color='muted' font='16'>
                 <div class="panel-heading">
-                  <app-x-remove class='pointer' (click)="removeField(idx, 'ignore_directories')" [displayOnHover]='4' [displayNone]='false'
-                    [float]='false'></app-x-remove>
+                  <app-x-remove class='pointer' (click)="removeField(idx, 'ignore_files')" [displayOnHover]='4' [displayNone]='false' [float]='false'></app-x-remove>
                 </div>
                 <div class="panel-body" [formGroupName]="idx">
                   <div class="form-group col-xs-6">

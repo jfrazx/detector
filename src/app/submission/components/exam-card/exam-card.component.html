@@ -15,7 +15,7 @@
   <div class="col-sm">
     <app-x-remove [displayOnHover]='2'></app-x-remove>
     <div>
-      <button clickLink='/exams/{{exam._id}}' class="btn btn-warning">Edit</button>
+      <button [routerLink]='exam._id' class="btn btn-warning">Edit</button>
     </div>
   </div>
 </div>

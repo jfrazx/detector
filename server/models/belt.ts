@@ -21,4 +21,6 @@ export interface BeltModel extends Document {
   requirements: string;
 }
 
+beltSchema.set('toObject', { getters: true });
+
 export const Belt = model<BeltModel>('Belt', beltSchema);

@@ -47,6 +47,8 @@ export interface IFingerPrint {
   contents: string;
 }
 
+fingerPrintSchema.set('toObject', { getters: true });
+
 export const FingerPrint = model<FingerPrintModel>(
   'FingerPrint',
   fingerPrintSchema

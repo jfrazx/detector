@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../store';
 
-import { Location, Instructor, Stack } from '../../models';
+import { Location, User, Stack } from '../../models';
 
 @Component({
   selector: 'app-location-view',
@@ -13,15 +13,27 @@ import { Location, Instructor, Stack } from '../../models';
 })
 export class LocationViewComponent implements OnInit {
   stacks$: Observable<Stack[]>;
-  instructors$: Observable<Instructor[]>;
   location$: Observable<Location>;
+  users$: Observable<User[]>;
 
   constructor(private store: Store<fromStore.FacilitiesState>) {}
 
   ngOnInit() {
     this.stacks$ = this.store.select(fromStore.fromSubmission.getStacks);
-    // this.instructors$ = this.store.select(fromStore.getInstructors)
+    this.users$ = this.store.select(fromStore.getUsers);
 
     this.store.dispatch(new fromStore.fromSubmission.LoadStacks());
+  }
+
+  onCreate(event: Location): void {
+    this.store.dispatch(new fromStore.LocationCreate(event));
+  }
+
+  onUpdate(event: Location): void {
+    this.store.dispatch(new fromStore.LocationUpdate(event));
+  }
+
+  onRemove(event: Location): void {
+    this.store.dispatch(new fromStore.LocationRemove(event));
   }
 }

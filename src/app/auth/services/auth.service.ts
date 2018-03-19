@@ -28,9 +28,9 @@ export class AuthService {
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 
-  logout(): Observable<void> {
+  logout(): Observable<User> {
     return this.http
-      .delete<void>(`${this.base}/logout`)
+      .delete<User>(`${this.base}/logout`)
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 }

@@ -2,12 +2,12 @@
   <ngb-tabset>
     <ngb-tab title='Login'>
       <ng-template ngbTabContent>
-        <app-auth-login></app-auth-login>
+        <app-auth-login (login)='onLogin($event)'></app-auth-login>
       </ng-template>
     </ngb-tab>
     <ngb-tab title='Register'>
       <ng-template ngbTabContent>
-        <app-auth-register></app-auth-register>
+        <app-auth-register [locations]='locations$ | async' (register)='onRegister($event)'></app-auth-register>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>

@@ -53,6 +53,8 @@ export interface ISubmissionFile {
   size: number;
 }
 
+submissionFileSchema.set('toObject', { getters: true });
+
 export const SubmissionFile = model<SubmissionFileModel>(
   'File',
   submissionFileSchema

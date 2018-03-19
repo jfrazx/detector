@@ -21,4 +21,6 @@ export interface RoleModel extends Document {
   capabilities: Array<CapabilityModel>;
 }
 
+roleSchema.set('toObject', { getters: true });
+
 export const Role = model<RoleModel>('Role', roleSchema);

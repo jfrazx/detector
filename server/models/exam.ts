@@ -39,4 +39,6 @@ export interface ExamModel extends Document {
   wireframe: string;
 }
 
+examSchema.set('toObject', { getters: true });
+
 export const Exam = model<ExamModel>('Exam', examSchema);

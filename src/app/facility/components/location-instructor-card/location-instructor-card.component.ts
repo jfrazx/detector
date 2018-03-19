@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { Instructor } from '../../models';
+import { User } from '../../models';
 
 const STACK_CARD_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -24,9 +24,9 @@ const STACK_CARD_ACCESSOR = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocationInstructorCardComponent implements ControlValueAccessor {
-  @Input() instructors: Instructor[];
+  @Input() instructors: User[];
 
-  included: Instructor[] = [];
+  included: User[] = [];
 
   private onTouch: Function;
   private onModelChange: Function;
@@ -39,11 +39,11 @@ export class LocationInstructorCardComponent implements ControlValueAccessor {
     this.onTouch = fn;
   }
 
-  writeValue(value: Instructor[]) {
+  writeValue(value: User[]) {
     this.included = value;
   }
 
-  selectInstructor(instructor: Instructor) {
+  selectInstructor(instructor: User) {
     if (this.inInstructors(instructor)) {
       this.included = this.included.filter(item => item.id !== instructor.id);
     } else {
@@ -54,7 +54,7 @@ export class LocationInstructorCardComponent implements ControlValueAccessor {
     this.onModelChange(this.included);
   }
 
-  private inInstructors(instructor: Instructor): boolean {
+  private inInstructors(instructor: User): boolean {
     return this.included.some(item => item.id === instructor.id);
   }
 }

@@ -1,9 +1,9 @@
 import { Stack } from '../../submission';
-import { Instructor } from './instructor';
+import { User } from './user';
 
 export interface Location {
   _id: string;
   city: string;
   stacks: Stack[];
-  instructors: Instructor[];
+  instructors: User[];
 }

@@ -89,6 +89,8 @@ export interface SubmissionModel extends Document {
   updatedAt: Date;
 }
 
+submissionSchema.set('toObject', { getters: true });
+
 export const Submission = model<SubmissionModel>(
   'Submission',
   submissionSchema

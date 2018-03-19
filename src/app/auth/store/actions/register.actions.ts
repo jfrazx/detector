@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Register } from '../../models';
 
 export enum RegisterActionTypes {
   REGISTER_AUTH = '[Register] Registering',
@@ -8,6 +9,8 @@ export enum RegisterActionTypes {
 
 export class RegisterAuth implements Action {
   readonly type = RegisterActionTypes.REGISTER_AUTH;
+
+  constructor(public payload: Register) {}
 }
 
 export class RegisterAuthSuccess implements Action {

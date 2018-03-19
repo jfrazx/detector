@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { User } from '../../../admin';
+import { Login } from '../../models';
 
 export enum AuthActionTypes {
   LOGIN_AUTH = '[Auth] Login',
@@ -14,6 +15,8 @@ export enum AuthActionTypes {
 
 export class AuthLogin implements Action {
   readonly type = AuthActionTypes.LOGIN_AUTH;
+
+  constructor(public payload: Login) {}
 }
 
 export class AuthLoginFail implements Action {

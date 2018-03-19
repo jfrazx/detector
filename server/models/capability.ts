@@ -13,6 +13,8 @@ export interface CapabilityModel extends Document {
   ability: string;
 }
 
+capabilitySchema.set('toObject', { getters: true });
+
 export const Capability = model<CapabilityModel>(
   'Capability',
   capabilitySchema

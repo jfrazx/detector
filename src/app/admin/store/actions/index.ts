@@ -1,2 +1,2 @@
-export * from './capabilities.actions';
-export * from './roles.actions';
+export * from './capability.actions';
+export * from './role.actions';

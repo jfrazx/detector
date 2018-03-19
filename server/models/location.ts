@@ -29,4 +29,6 @@ export interface LocationModel extends Document {
   user: Array<UserModel>;
 }
 
+locationSchema.set('toObject', { getters: true });
+
 export const Location = model<LocationModel>('Location', locationSchema);

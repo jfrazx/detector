@@ -93,4 +93,6 @@ export interface IUser extends Model<UserModel> {
   ): Promise<boolean>;
 }
 
+userSchema.set('toObject', { getters: true });
+
 export const User = model<UserModel>('User', userSchema);

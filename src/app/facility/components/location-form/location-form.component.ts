@@ -8,7 +8,6 @@ import {
 import {
   Component,
   Input,
-  OnInit,
   OnChanges,
   Output,
   EventEmitter,
@@ -17,60 +16,55 @@ import {
 
 import { map } from 'rxjs/operators';
 
-import { Location, Stack, Instructor } from '../../models';
+import { Location, Stack, User } from '../../models';
 
 @Component({
   selector: 'app-location-form',
-  templateUrl: './location-form.component.test.html',
+  templateUrl: './location-form.component.html',
   styleUrls: ['location-form.component.scss'],
 })
-export class LocationFormComponent implements OnInit, OnChanges {
+export class LocationFormComponent implements OnChanges {
   @Input() location: Location;
   @Input() stacks: Stack[];
-  @Input() instructors: Instructor[];
+  @Input() users: User[];
 
   @Output() create: EventEmitter<Location> = new EventEmitter<Location>();
   @Output() update: EventEmitter<Location> = new EventEmitter<Location>();
 
-  locationFocus = false;
+  cityFocus = false;
+  exists = false;
 
   form: FormGroup = this.fb.group({
-    location: ['', [Validators.required, Validators.minLength(3)]],
+    city: ['', [Validators.required, Validators.minLength(3)]],
     stacks: [[]],
     instructors: [[]],
   });
 
   constructor(private fb: FormBuilder) {}
 
-  get locationControl() {
-    return this.form.get('location') as FormControl;
+  get cityControl() {
+    return this.form.get('city') as FormControl;
   }
 
-  get locationInvalid() {
-    return this.locationControl.invalid;
+  get cityInvalid() {
+    return this.cityControl.invalid;
   }
 
-  get locationValid() {
-    return this.locationControl.valid;
+  get cityValid() {
+    return this.cityControl.valid;
   }
 
-  get locationControlMinLength() {
-    return (
-      this.locationControl.hasError('minlength') && this.locationControl.touched
-    );
+  get cityControlMinLength() {
+    return this.cityControl.hasError('minlength') && this.cityControl.touched;
   }
 
-  get locationControlRequired() {
-    return (
-      this.locationControl.hasError('required') && this.locationControl.touched
-    );
+  get cityControlRequired() {
+    return this.cityControl.hasError('required') && this.cityControl.touched;
   }
 
-  get locationPlaceHolderText() {
-    return this.locationFocus ? 'Location' : 'e.g. Seattle';
+  get cityPlaceHolderText() {
+    return this.cityFocus ? 'city' : 'e.g. Seattle';
   }
-
-  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.location && this.location._id) {
@@ -80,6 +74,8 @@ export class LocationFormComponent implements OnInit, OnChanges {
 
   createLocation(form: NgForm) {
     const { valid, value } = form;
+
+    console.log('form content', value, valid);
 
     if (valid) {
       this.create.emit(value);
