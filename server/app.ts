@@ -1,9 +1,9 @@
-import { API, PRODUCTION, session } from './server/config';
-import { normalizePort } from './server/utils';
+import { API, PRODUCTION, session } from './config';
+import { normalizePort } from './utils';
 import { json, urlencoded } from 'body-parser';
-import { join } from 'path';
+import { resolve } from 'path';
 
-import { routes, catchAll } from './server/routes';
+import { routes, catchAll } from './routes';
 
 import * as compress from 'compression';
 import * as express from 'express';
@@ -12,7 +12,6 @@ import * as helmet from 'helmet';
 import * as https from 'https';
 
 const port = normalizePort(process.env.PORT || 8000);
-const root = __dirname;
 const app = express();
 
 app.set('production', PRODUCTION);
@@ -26,7 +25,7 @@ app
   .use(json())
   .use(urlencoded({ extended: true }))
   .use(session)
-  .use(express.static(join(root, 'public')))
+  .use(express.static(resolve('dist/public')))
   .use(API, routes)
   .use(catchAll)
 
