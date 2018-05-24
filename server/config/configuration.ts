@@ -11,8 +11,6 @@ const REDIS_PORT = parseInt(process.env.REDIS_PORT, 10) || 6379;
 const REDIS_HOST = process.env.REDIS_HOST || '127.0.0.1';
 const SESSION_AGE = 43200 * 1000;
 
-global.Promise = Promise;
-
 export const configuration: Configuration = {
   database: {
     default: {

@@ -14,8 +14,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { map } from 'rxjs/operators';
-
 import { Location, Stack, User } from '../../models';
 
 @Component({

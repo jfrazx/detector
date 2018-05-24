@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { API } from '../config';
 
 import {
   basicErrorHandler,
@@ -19,12 +20,12 @@ import { router as studentRouter } from './student.route';
 import { router as submissionFileRouter } from './submission-file.route';
 import { router as submissionRouter } from './submission.route';
 import { router as userRouter } from './user.route';
-
-export * from './catch-all.route';
+import { catchAll } from './catch-all.route';
 
 export const routes = Router();
+const router = Router();
 
-routes
+router
   .use('/auth', authRouter)
   .use('/belts', beltRouter)
   .use('/capabilities', capabilityRouter)
@@ -36,7 +37,11 @@ routes
   .use('/students', studentRouter)
   .use('/submission_files', submissionFileRouter)
   .use('/submissions', submissionRouter)
-  .use('/users', userRouter)
+  .use('/users', userRouter);
+
+routes
+  .use(API, router)
+  .use(catchAll)
 
   // Error Handling Middleware ....
   .use(errorLogger)

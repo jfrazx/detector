@@ -1,9 +1,9 @@
-import { API, PRODUCTION, session } from './config';
+import { PRODUCTION, session } from './config';
 import { normalizePort } from './utils';
 import { json, urlencoded } from 'body-parser';
 import { resolve } from 'path';
 
-import { routes, catchAll } from './routes';
+import { routes } from './routes';
 
 import * as compress from 'compression';
 import * as express from 'express';
@@ -26,7 +26,6 @@ app
   .use(urlencoded({ extended: true }))
   .use(session)
   .use(express.static(resolve('dist/public')))
-  .use(API, routes)
-  .use(catchAll)
+  .use(routes)
 
   .listen(port, () => console.log(`Express server listening on port ${port}`));

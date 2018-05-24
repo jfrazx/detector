@@ -13,8 +13,6 @@ export function all<T>(
 ): Promise<T[]> {
   if (promises.length === 0) {
     return Promise.resolve([]);
-  } else if (Array.isArray(promises[0])) {
-    return Promise.all<T>(flatten(promises));
   }
-  return Promise.all<T>(promises as Promise<T>[]);
+  return Promise.all<T>(flatten(promises));
 }
