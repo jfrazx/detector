@@ -20,6 +20,7 @@ export const configuration: Configuration = {
       options: {
         promiseLibrary: Promise,
         poolSize: 15,
+        // useNewUrlParser: true,
       },
     },
     development: {

@@ -46,13 +46,9 @@ export async function baseline(files: SubmissionFileModel[]) {
   );
   const prints: IFingerPrint[][] = [];
 
-  for (let index = 0; index < keys.length; index++) {
+  for (const [_index, key] of keys.entries()) {
     prints.push(
-      await new FingerPrinter(
-        files,
-        keys[index],
-        FingerPrintMethod[keys[index]]
-      ).finger()
+      await new FingerPrinter(files, key, FingerPrintMethod[key]).finger()
     );
   }
 

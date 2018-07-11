@@ -12,36 +12,38 @@ const options: any = {
   usePushEach: true,
 };
 
+const { ObjectId } = Schema.Types;
+
 const submissionSchema = new Schema(
   {
     belt: {
       ref: 'Belt',
-      type: Schema.Types.ObjectId,
+      type: ObjectId,
     },
     stack: {
       ref: 'Stack',
       required: true,
-      type: Schema.Types.ObjectId,
+      type: ObjectId,
     },
     exam: {
       ref: 'Exam',
       required: true,
-      type: Schema.Types.ObjectId,
+      type: ObjectId,
     },
     files: [
       {
         ref: 'SubmissionFile',
         required: true,
-        type: Schema.Types.ObjectId,
+        type: ObjectId,
       },
     ],
     student: {
       ref: 'Student',
-      type: Schema.Types.ObjectId,
+      type: ObjectId,
     },
     instructor: {
       ref: 'User',
-      type: Schema.Types.ObjectId,
+      type: ObjectId,
     },
     integrity: {
       default: true,

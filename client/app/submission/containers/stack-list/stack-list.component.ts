@@ -26,7 +26,7 @@ export class StackListComponent implements OnInit {
     console.log('deleting stack', event);
   }
 
-  private selectStack(stack: Stack): void {
+  selectStack(stack: Stack): void {
     this.selectedStack = this.selectedStack === stack ? null : stack;
   }
 }

@@ -40,23 +40,23 @@ export class LocationFormComponent implements OnChanges {
 
   constructor(private fb: FormBuilder) {}
 
-  get cityControl() {
+  get cityControl(): FormControl {
     return this.form.get('city') as FormControl;
   }
 
-  get cityInvalid() {
+  get cityInvalid(): boolean {
     return this.cityControl.invalid;
   }
 
-  get cityValid() {
+  get cityValid(): boolean {
     return this.cityControl.valid;
   }
 
-  get cityControlMinLength() {
+  get cityControlMinLength(): boolean {
     return this.cityControl.hasError('minlength') && this.cityControl.touched;
   }
 
-  get cityControlRequired() {
+  get cityControlRequired(): boolean {
     return this.cityControl.hasError('required') && this.cityControl.touched;
   }
 

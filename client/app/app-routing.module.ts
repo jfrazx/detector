@@ -2,6 +2,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { environment } from '../environments/environment';
+import { FacilityModule } from './facility';
+import { SubmissionModule } from './submission';
 
 const routes: Routes = [
   {
@@ -11,11 +13,11 @@ const routes: Routes = [
   },
   {
     path: 'facilities',
-    loadChildren: './facility/facility.module#FacilityModule',
+    loadChildren: () => FacilityModule,
   },
   {
     path: 'submissions',
-    loadChildren: './submission/submission.module#SubmissionModule',
+    loadChildren: () => SubmissionModule,
   },
 ];
 

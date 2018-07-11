@@ -48,3 +48,14 @@ export function flatten<T>(arrays: (T | T[])[], results: T[] = []): T[] {
 export function inObject<T extends object>(field: string, object: T): boolean {
   return field in object;
 }
+
+/**
+ * Returns true if the given value is falsey
+ *
+ * @export
+ * @param {boolean} value
+ * @returns {boolean}
+ */
+export function not(value: any): boolean {
+  return Boolean(value) === false;
+}

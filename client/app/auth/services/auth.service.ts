@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import 'rxjs/add/observable/throw';
+import { Injectable } from '@angular/core';
 
 import { Login, Register } from '../models';
 import { User } from '../../admin';
@@ -18,19 +17,19 @@ export class AuthService {
 
   register(user: Register): Observable<void> {
     return this.http
-      .post(`${this.base}/register`, user)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
+      .post<void>(`${this.base}/register`, user)
+      .pipe(catchError((error: any) => ErrorObservable.create(error.json())));
   }
 
   login(user: Login): Observable<User> {
     return this.http
       .post<User>(`${this.base}/login`, user)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
+      .pipe(catchError((error: any) => ErrorObservable.create(error.json())));
   }
 
   logout(): Observable<User> {
     return this.http
       .delete<User>(`${this.base}/logout`)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
+      .pipe(catchError((error: any) => ErrorObservable.create(error.json())));
   }
 }

@@ -3,7 +3,7 @@
     <form [formGroup]='form' novalidate>
       <app-form-panel text='city'>
         <mat-form-field class='form-control' [class.valid]='cityValid'>
-          <input (focus)="cityFocus = true" (blur)="cityFocus = false" matInput type="text" formControlName='city' class='mat-input-underline'>
+          <input (focus)="cityFocus = true" (blur)="cityFocus = false" matInput type="text" formControlName='city' class='mat-form-field-underline'>
           <mat-placeholder *ngIf='cityInvalid'>
             <mat-icon>home</mat-icon>
             {{ cityPlaceHolderText }}

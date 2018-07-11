@@ -3,7 +3,7 @@ import { ValidationError } from 'mongoose';
 
 export function validationHandler(
   error: ValidationError,
-  request: Request,
+  _request: Request,
   response: Response,
   next: NextFunction
 ): void {

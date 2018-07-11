@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import 'rxjs/add/observable/throw';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 import { SubmissionFile } from '../models';
 import { API } from '../../config';
@@ -17,7 +17,7 @@ export class SubmissionFileService {
   getSubmissionFiles(): Observable<SubmissionFile[]> {
     return this.http
       .get<SubmissionFile[]>(this.base)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
+      .pipe(catchError((error: any) => ErrorObservable.create(error.json())));
   }
 
   createSubmissionFile(
@@ -25,7 +25,7 @@ export class SubmissionFileService {
   ): Observable<SubmissionFile> {
     return this.http
       .post<SubmissionFile>(this.base, submissionFile)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
+      .pipe(catchError((error: any) => ErrorObservable.create(error.json())));
   }
 
   updateSubmissionFile(
@@ -33,7 +33,7 @@ export class SubmissionFileService {
   ): Observable<SubmissionFile> {
     return this.http
       .put<SubmissionFile>(`${this.base}/${submissionFile._id}`, submissionFile)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
+      .pipe(catchError((error: any) => ErrorObservable.create(error.json())));
   }
 
   removeSubmissionFile(
@@ -41,6 +41,6 @@ export class SubmissionFileService {
   ): Observable<SubmissionFile> {
     return this.http
       .delete<SubmissionFile>(`${this.base}/${submissionFile._id}`)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
+      .pipe(catchError((error: any) => ErrorObservable.create(error.json())));
   }
 }

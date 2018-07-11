@@ -1,7 +1,9 @@
 {
   "compileOnSave": false,
+  "preserveWhitespace": "off",
   "compilerOptions": {
     "outDir": "./dist/",
+    "downlevelIteration": true,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -9,7 +11,8 @@
     "experimentalDecorators": true,
     "target": "es5",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"]
+    "lib": ["es2017", "dom"],
+    "baseUrl": "."
   },
   "exclude": ["**/node_modules/*", "e2e"]
 }

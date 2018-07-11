@@ -1,4 +1,3 @@
-import { PRODUCTION } from './production';
 import { createClient } from 'redis';
 
 import { configuration } from './configuration';
