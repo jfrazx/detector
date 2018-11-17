@@ -1,5 +1,7 @@
 # DojoDetector
 
+Much of the code for this project has been transferred to [Dojo Services](https://github.com/dojo-json/dojo-services)
+
 Use yarn for dependency management
 
 `yarn install`
